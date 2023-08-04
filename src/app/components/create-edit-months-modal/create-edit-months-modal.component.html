@@ -1,0 +1,62 @@
+<app-navbar></app-navbar>
+
+<section class="month-container">
+  <div class="container-total">
+    <div class="principal-box">
+      <div class="box-col">
+        <header class="header">
+          <h2 class="title">Calendario</h2>
+          <p class="subtitle">Visualizar y modificar los días laborales mensualmente.</p>
+          <div class="input-container">
+            <div class ="div-dates">
+              <p class="text-input">Fecha Inicial: </p>
+              <input type="date" class="input input-fecha" [(ngModel)]="startDate" (blur)="reloadCalendar()">
+            </div>
+            <div class ="div-dates">
+              <p class="text-input">Fecha Final: </p>
+              <input type="date" id="fecha-final" class="input input-fecha" [(ngModel)]="endDate" (blur)="reloadCalendar()">
+            </div>
+          </div>
+        </header>
+        <div class="loader-container" *ngIf="showLoader">
+          <app-loader class="reloj-loader" ></app-loader>
+        </div>
+        <body class="body-container">
+        <app-calendar #calendar [holidays]="holidays" [workdays]="getFilteredYearMonthWorkdays()"></app-calendar>
+        <div class="month-list">
+          <p class="year-header">{{ calendarRef?.currentYear }}</p>
+          <ul class="principal-ul">
+            <li *ngFor="let monthWorkdays of calendarRef?.workdays">
+              <ng-container *ngIf="monthWorkdays.year === calendarRef?.currentYear">
+                <ul>
+                  <li class="item-month" *ngFor="let monthWorkday of monthWorkdays.monthWorkdays">
+                    <div class="data-month">
+                      <span>{{ getMonthName(monthWorkday.month) }} :</span>
+                      <div class="box-input">
+                        <button (click)="modifyWorkdays(monthWorkday,-1)">-</button>
+                        <input class="workdays-input" type="number"
+                              [value]="getModifiedMonthWorkdays(monthWorkday.month) !== undefined ? getModifiedMonthWorkdays(monthWorkday.month) : monthWorkday.days.length"
+                              readonly class="inputChangeDay">
+                        <button (click)="modifyWorkdays(monthWorkday,+1)">+</button>
+                        días laborales
+    
+                      </div>
+                    </div>
+                    <span *ngIf="isMonthModified(monthWorkday.month)" class="modified-message">Modificaciones: {{ getModifiedDays(monthWorkday.month) }}</span>
+                    <span *ngIf="isMonthSaved(monthWorkday.month)" class="saved-message">Guardado</span>
+                  </li>
+                </ul>
+              </ng-container>
+            </li>
+          </ul>
+          <div class="button-box">
+            <button type="button" class="button selected" (click)="saveAll()">Guardar</button>
+            <button type="button" class="button selected" (click)="cancelAll()">Cancelar</button>
+          </div>
+        </div>
+        </body>
+      </div>
+    </div>
+  </div>
+</section>
+

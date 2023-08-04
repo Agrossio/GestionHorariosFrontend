@@ -1,0 +1,116 @@
+
+.login-title {
+    font-weight: 600;
+    margin-bottom: 100px;
+}
+
+.div-login-all {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100vh;
+}
+
+.contenedor-form {
+    width: 50%;
+    height: 100vh;
+    padding: 50px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.form-login {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 50px;
+}
+
+.space {
+    height: 50px;
+}
+
+.div-login {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 50px 0px;
+}
+
+.clock-image {
+    width: 325px;
+    height: 322px;
+    margin-top: -50px;
+}
+
+.tus-horas {
+    font-size: 128px;
+    font-weight: 100;
+    margin-top: -60px;
+}
+
+.not-register {
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: -60px;
+}
+.button-login {
+    width: 450px;
+    height: 60px;
+}
+
+a:hover, .button-login:hover {
+    color: #4B3832;
+}
+
+.button-login:disabled {
+    background-color: rgb(122, 122, 122);
+    color: rgb(148, 148, 148);
+}
+
+.button-reg {
+  width: 450px;
+  height: 60px;
+  margin-bottom: 30px;
+}
+
+.passwordEye {
+    background: url(https://cdn-icons-png.flaticon.com/512/6405/6405909.png)
+      no-repeat right;
+    background-size: 50px;
+    background-color: white;
+  }
+
+  .button-passv {
+    position: absolute;
+    width: 50px;
+    margin-right: 20px;
+    background-color: transparent;
+  }
+
+  .button-passv:hover {
+    border: none;
+  }
+
+  .div-password {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  a{
+    text-decoration: none;
+    color: #FFF4E6;
+}
+.div-margin-bottom-to-align-buttom {
+    margin: 20px 0px;
+}
+.error-input{
+  width: 450px;
+}

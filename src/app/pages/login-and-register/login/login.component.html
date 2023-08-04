@@ -1,0 +1,28 @@
+<div class="div-login-all">
+<div class="contenedor-form">
+    <form class="form-login" [formGroup]="loginForm">
+        <h1 class="login-title">Iniciar sesión</h1>
+            <div class="div-input-style div-margin-bottom-to-align-buttom">
+                <input id="loginEmail" type="email" placeholder="Email" formControlName="email" class="input-form ps-3">
+                <label for="loginEmail">Email</label>
+                <span class="error-input" *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched">*Campo obligatorio</span>
+                <span class="error-input" *ngIf="loginForm.get('email')?.errors?.['email']">*El mail debe tener un formato válido (example@mail.com)</span>
+            </div>
+            <div class="div-password div-input-style div-margin-bottom-to-align-buttom">
+                <input id="loginPassword" type="{{passwordVisible?'text':'password'}}" placeholder="Contraseña" formControlName="password" class="input-form ps-3 passwordEye" maxlength="20">
+                <label for="loginPassword">Password</label>
+                <button type="button" (click)="togglePasswordVisibility()" class="button-passv"></button>
+                <span class="error-input" *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched">*Campo obligatorio</span>
+                <span class="error-input" *ngIf="loginForm.get('password')?.errors?.['pattern']">*Debe tener entre 8 y 20 carácteres, al menos una mayúscula, una minúscula y un número.</span>
+            </div>
+            <div class="space"></div>
+        <button type="submit" class="button-login" (click)="login()" [formGroup]="loginForm" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+    </form>
+</div>
+<div class="card div-login">
+    <img src="assets/images/clock.png" alt="clock" class='clock-image'>
+    <h2 class="tus-horas">TUS HORAS</h2>
+    <h3 class="not-register">¿No estás registrado?</h3>
+    <button class="button-reg" routerLink="/register">Registrarse</button>
+</div>
+</div>

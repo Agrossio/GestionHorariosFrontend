@@ -1,0 +1,69 @@
+    <div class="modal-box" [hidden]="!isModalVisible">
+        
+        <img src="assets/images/iconTask.png" alt="Imagen" class="imagen">
+
+        <h2 class="modal-title">{{ modalTitle }}</h2>
+
+            <app-loader *ngIf="showLoader" class="reloj-loader" ></app-loader>
+
+                <form [formGroup]="taskForm" class="form mt-4" (ngSubmit)="modalButtonText == 'Crear' ? onSubmit() : editTask(taskId) ">
+
+                    <div class="div-input-style">
+                        <input type="text" class="input-form ps-3" placeholder="Titulo" formControlName="titulo" name="titulo"
+                               id="titulo">
+                        <label for="titulo">Titulo</label>
+                    </div>
+
+                    <div class="div-input-style">
+                        <input type="text" class="input-form ps-3" placeholder="Descripcion" formControlName="descripcion" name="descripcion"
+                               id="descripcion">
+                        <label for="descripcion">Descripcion</label>
+                    </div>
+
+                    <div class="div-input-style">
+                        <input type="text" class="input-form ps-3" placeholder="Horas estimadas" formControlName="horas_estimadas" name="horas estimadas"
+                               id="horas estimadas">
+                        <label for="horas estimadas">Horas estimadas</label>
+                    </div>
+
+                    <div class="div-input-style">
+                        <select class="input-form ps-3" formControlName="prioridad" name="prioridad" id="prioridad">
+                            <option value="LOW">Baja</option>
+                            <option value="MEDIUM">Media</option>
+                            <option value="HIGH">Alta</option>
+                          </select>
+                        <label for="prioridad" class="label-select">Prioridad</label>
+                    </div>
+
+                    <div class="div-input-style">
+                        <select class="input-form ps-3" formControlName="estado" name="estado" id="estado">
+                            <option value="PENDING">Pendiente</option>
+                            <option value="IN_PROGRESS">En progreso</option>
+                            <option value="DONE">Finalizada</option>
+                            <option value="CANCELLED">Cancelaod</option>
+                            <option value="REVIEWING">En revision</option>
+                        </select>
+                        <label for="estado" class="label-select">Estado</label>
+                    </div>
+
+                    <div class="div-input-style">
+                        <input type="date" class="input-form ps-3" placeholder="Fecha de Inicio" formControlName="fechaI" name="fechaI"
+                               id="fechaI" (input)="validateYear('fechaI', 'fechaI')" required>
+                        <label for="fechaI">Fecha de inicio</label>
+                        <span class="error-input align-span" *ngIf="taskForm.get('fechaI')?.errors?.['invalidYear']"
+                                >El formato del año debe tener 4 dígitos válidos</span>
+                    </div>
+
+                    <div class="div-input-style">
+                        <input type="date" class="input-form ps-3" placeholder="Fecha de Finalizacion" formControlName="fechaF" name="fechaF"
+                               id="fechaF" (input)="validateYear('fechaF', 'fechaF')" required>
+                        <label for="fechaF">Fecha de finalizacion</label>
+                        <span class="error-input align-span" *ngIf="taskForm.get('fechaF')?.errors?.['invalidYear']"
+                                >El formato del año debe tener 4 dígitos válidos</span>
+                    </div>
+
+                    <button type="submit" class="button-task" [disabled]="taskForm.invalid" (click)="openModal()">{{ modalButton }}</button>
+
+                </form>
+
+    </div>

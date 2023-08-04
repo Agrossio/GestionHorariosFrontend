@@ -1,0 +1,32 @@
+<div class="modal-header">
+    <div class="header">
+        <img class="modal-icon" src="assets/images/taskIconModal.png" alt="imagen de tarea">
+        <h4 class="modal-title">Tarea</h4>
+        <p><b>{{taskSelected.title}}</b></p>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="box-data">
+        <p class="description-task">Descripción de la tarea Lorem ipsum dolor sit amet consectetur adipiscing elit malesuada platea, ac massa per magnis cursus facilisis curae aptent maecenas, condimentum vulputate mi tortor parturient metus fringilla in.</p>
+        <div class="box-secondaryData">
+            <p class="dataTask"><b>Desarrollador asignado:</b> {{taskSelected.dev_email
+                ?? "Sin asignar"}}</p>
+        </div>
+        <div class="box-secondaryData">
+            <p class="dataTask"><b>Prioridad:</b> {{taskSelected.priority_name}}</p>
+            <p class="dataTask"><b>Puntos de historia:</b> {{taskSelected.story_points}}</p>
+            <p class="dataTask"><b>Horas estimadas:</b> {{taskSelected.hours_estimate}}</p>
+        </div>
+        <div class="box-dataDates">
+            <p><b>Fechas estimadas:</b></p>
+            <div class="box-secondaryData">
+                <p><b>Inicio:</b> {{taskSelected.start_date}}</p>
+                <p><b>Finalización:</b> {{taskSelected.end_date}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="box-buttons">
+        <button (click)="assignTaskDev()">Tomar tarea</button>
+        <button (click)="cancelAssignTask()">Cancelar</button>
+    </div>
+</div>

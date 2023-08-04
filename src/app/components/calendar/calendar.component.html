@@ -1,0 +1,21 @@
+<div class="calendar">
+  <div class="wrapper-calendar">
+    <div class="header-calendar">
+      <button (click)="changeYearBy(-1)" class="btn-year"><<</button>
+      <button (click)="changeMonthBy(-1)" class="btn-month"><</button>
+      <h1 class="h1-calendar">{{dateSelect | date:'MMM, yyyy'}}</h1>
+      <button (click)="changeMonthBy(1)" class="btn-month">></button>
+      <button (click)="changeYearBy(1)" class="btn-year">>></button>
+    </div>
+    <div class="body-calendar">
+      <ol class="months-list">
+        <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
+        <li (click)="clickDay(day.value)" [style.gridColumnStart]="first ? day.indexWeek : 'auto'"
+            *ngFor="let day of monthSelect; let first = first"
+            [ngClass]="{'working-day': isWorkingDay(day.value)}">
+          <span>{{day.value}}</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>

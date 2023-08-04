@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+<section class="d-flex" *ngIf="projectSelected">
+  <div class="head-box">
+    <div class="list-title">
+      <h2 class="h2 fw-bold">{{projectSelected!.name}}</h2>
+      <p>Cliente: {{projectSelected!.client_id}}</p>
+    </div>
+    <div class="buttons-up column">
+      <button class="action-button" >Ver Tareas</button>
+    </div>
+  </div>
+
+  <div class="detail-box">
+
+  </div>
+</section>

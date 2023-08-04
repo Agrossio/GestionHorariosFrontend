@@ -1,0 +1,52 @@
+  .modal-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #BE9B7B;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    
+    height: 100%;
+    overflow-y: auto;
+  }
+
+
+
+.modal-title{
+    text-align: center;
+    padding: 0%;
+}
+.form{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+.input-form{
+    background-color: white;
+    border: 1px solid black;
+    width: 450px;
+    height: 60px;
+    margin: 15px;
+    margin-bottom: 7px;
+}
+
+.input-formDouble {
+  width: 50%;
+}
+
+.label-select{
+  margin-left: 10px;
+  margin-top: 5px;
+}
+
+.button-task{
+    width: 450px;
+    height: 60px;
+    margin: 15px;
+    margin-bottom: 7px;
+}
+.align-span{
+  top: 75px;
+}

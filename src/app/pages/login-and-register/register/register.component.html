@@ -1,0 +1,100 @@
+<div class="general">
+
+  <div class="card">
+
+    <div class="contenido-card">
+
+      <img src="assets/images/clock.png" class="clock-image">
+
+      <h1>TUS HORAS</h1>
+
+      <h3>¿Ya tenes una cuenta?</h3>
+
+      <button routerLink="">Iniciar sesión</button>
+    </div>
+
+  </div>
+
+  <div class="registro">
+
+
+    <h1>Registrarse</h1>
+
+    <form [formGroup]="registerForm" class="form mt-4" (ngSubmit)="sendEmail($event)">
+      <div class="div-input-style">
+        <input type="text" class="input-form ps-3" placeholder="Nombre" formControlName="nombre" name="nombre"
+          id="nombre">
+        <label for="nombre">Nombre</label>
+        <span class="error-input"
+          *ngIf="registerForm.get('nombre')?.errors?.['required'] && registerForm.get('nombre')?.touched">*Campo
+          obligatorio</span>
+        <span class="error-input" *ngIf="registerForm.get('nombre')?.errors?.['maxlength']">*El nombre debe tener como
+          máximo 45 caracteres</span>
+      </div>
+
+      <div class="div-input-style">
+        <input class="input-form ps-3" type="text" id="apellido" placeholder="Apellido" formControlName="apellido"
+          name="apellido">
+        <label for="apellido">Apellido</label>
+        <span class="error-input"
+          *ngIf="registerForm.get('apellido')?.errors?.['required'] && registerForm.get('apellido')?.touched">*Campo
+          obligatorio</span>
+        <span class="error-input" *ngIf="registerForm.get('apellido')?.errors?.['maxlength']">*El apellido debe tener
+          como máximo 45 caracteres</span>
+      </div>
+
+      <div class="div-input-style">
+        <input class="input-form ps-3" type="email" id="email" placeholder="Email" formControlName="email" name="email">
+        <label for="email">Email</label>
+        <span class="error-input"
+          *ngIf="registerForm.get('email')?.errors?.['required'] && registerForm.get('email')?.touched">*Campo
+          obligatorio</span>
+        <span class="error-input" *ngIf="registerForm.get('email')?.errors?.['maxlength']">*El email debe tener como
+          máximo 45 caracteres</span>
+        <span class="error-input"
+          *ngIf="registerForm.get('email')?.errors?.['email'] && registerForm.get('email')?.touched">*El correo
+          electrónico no es válido.</span>
+      </div>
+
+      <div class="div-input-style">
+
+        <input class="input-form ps-3" type="text" id="cuil" placeholder="CUIL/CUIT" formControlName="cuilCuit">
+        <label for="cuil">Cuil/Cuit</label>
+
+        <span class="error-input"
+          *ngIf="registerForm.get('cuilCuit')?.errors?.['required'] && registerForm.get('cuilCuit')?.touched">*Campo
+          obligatorio</span>
+        <span class="error-input" *ngIf="registerForm.get('cuilCuit')?.errors?.['minlength']">*El CUIL/CUIT debe tener
+          como mínimo 10 caracteres</span>
+        <span class="error-input" *ngIf="registerForm.get('cuilCuit')?.errors?.['maxlength']">*El CUIL/CUIT debe tener
+          como máximo 15 caracteres</span>
+      </div>
+
+      <div class="div-input-style">
+
+        <input class="input-form ps-3" type="tel" id="tel" placeholder="Telefono" formControlName="telefono">
+        <label for="tel">Teléfono</label>
+
+        <span class="error-input"
+          *ngIf="registerForm.get('telefono')?.errors?.['required'] && registerForm.get('telefono')?.touched">*Campo obligatorio</span>
+      </div>
+
+      <div class="div-password div-input-style">
+        <input type="{{passwordVisible?'text':'password'}}" placeholder="Contraseña" id="pass" formControlName="pass"
+          class="input-form ps-3 passwordEye">
+        <label for="pass">Password</label>
+        <button type="button" (click)="togglePasswordVisibility()" class="button-passv"></button>
+      </div>
+      <span class="errores"
+        *ngIf="registerForm.get('pass')?.errors?.['required'] && registerForm.get('pass')?.touched">*Campo
+        obligatorio</span>
+      <span class="errores" *ngIf="registerForm.get('pass')?.errors?.['pattern']">*Debe tener entre 8 y 20 carácteres,
+        al menos una mayúscula, una minúscula y un número.</span>
+
+      <button type="submit" class="button-register" [disabled]="registerForm.invalid" (click)="onSubmit()">Registrarse
+      </button>
+    </form>
+
+  </div>
+
+</div>

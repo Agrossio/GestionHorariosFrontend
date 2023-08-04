@@ -1,0 +1,121 @@
+.project-container{
+    display: flex;
+    flex-direction: column;
+}
+.list-general{
+    display: flex;
+    flex-direction: row;
+    margin: 2.5vh 2.5vh 2.5vh 0;
+}
+.list-project{
+    margin: 0 3vh;
+    width: 500px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    padding:20px;
+}
+
+.list-button{
+    height: 100%;
+    overflow: auto;
+    padding-right: 10px;
+}
+.list-button::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+    background-color: #FFF4E6;
+    border-radius: 5px;
+}
+.list-button::-webkit-scrollbar-thumb {
+    background: #4B3832;
+    border-radius: 5px;
+}
+.list-button::-webkit-scrollbar-thumb:hover{
+    background: rgba(75, 56, 50, 0.85);
+    transition: all 0.5s;
+}
+.list-item {
+    background-color:#BE9B7B;
+    color:black;
+    border-radius: 10px;
+    border: 1px solid #4B3832;
+    font-weight:400;
+    width:100%;
+    text-align:left;
+    padding : 0 15px;
+    height: 45px;
+    margin-bottom: 10px;
+}
+.list-item:hover{
+    background-color: #4B3832;
+    color:#BE9B7B;
+    transition: all 0.5s;
+}
+.input-search{
+ height: 42px;
+}
+.lupita {
+    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png) no-repeat;
+    background-position: 98%;
+    background-color: #FFF4E6;
+    background-size: 32px;
+}
+::-webkit-input-placeholder {
+    color: #212529;
+  }
+.project-card{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.project-card-detail{
+    max-height: 80vh;
+    width: 100%;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2vh;
+    padding:20px;
+}
+.project-title{
+    margin: 2vh 0 5vh 2vh;
+}
+.project-title h2{
+    font-size: 40px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 2vh;
+}
+.project-title p{
+    font-size: 20px;
+    margin: 0;
+}
+
+.div-icons{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+.div-staff img{
+    width: 113px;
+}
+.div-task, .div-alert, .div-staff{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 32px;
+}
+.div-buttons{
+    display: flex;
+    justify-content: space-around;
+}
+.no-overflow-button{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

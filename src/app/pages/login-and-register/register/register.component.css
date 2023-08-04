@@ -1,0 +1,143 @@
+.general{
+    display: flex;
+    justify-content: center;
+}
+
+.card{
+    width: 50%;
+    height: 100vh;
+    justify-content: center;
+}
+
+.contenido-card{
+    margin-top: 40px;
+    text-align: center;
+}
+
+.clock-image{
+    width: 355px;
+    height: 352px;
+    margin-bottom: 20px;
+}
+
+.contenido-card h1{
+    font-size: 128px;
+    font-weight: 100;
+    margin-bottom: 10px;
+}
+
+.contenido-card h3{
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.registro{
+    width: 50%;
+    height: 100vh;
+    padding-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-registro{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contenido-registro h1{
+    font-weight: 600;
+}
+
+.form{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.input{
+    background-color: white;
+    border: 1px solid black;
+    width: 210px;
+    height: 60px;
+    margin: 15px;
+    margin-bottom: 5px;
+}
+
+.input-form{
+    background-color: white;
+    border: 1px solid black;
+    width: 450px;
+    height: 60px;
+    margin: 15px;
+    margin-bottom: 7px;
+}
+
+.input-formDouble {
+  width: 50%;
+}
+.errores{
+    color: #6e0000;
+    align-self: flex-start;
+    margin-left: 15px;
+    width: 450px;
+    text-align: left;
+    height: 8px;
+    font-size: 11px;
+    margin-top: -7px;
+}
+
+.error-input{
+  margin-top: 2px;
+}
+
+button{
+    width: 450px;
+    height: 60px;
+    margin-top: 20px;
+}
+
+.button-register{
+    margin-top: 38px;
+    margin-left: 15px;
+}
+
+a{
+    text-decoration: none;
+    color: #FFF4E6;
+}
+
+.button-register:disabled {
+    background-color: rgb(122, 122, 122);
+    color: rgb(148, 148, 148);
+}
+
+.passwordEye {
+    background: url(https://cdn-icons-png.flaticon.com/512/6405/6405909.png)
+      no-repeat right;
+    background-size: 50px;
+    background-color: white;
+  }
+
+.button-passv {
+    position: absolute;
+    width: 50px;
+    margin-right: 20px;
+    background-color: transparent;
+    border: none;
+  }
+
+.div-password {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 480px;
+}
+
+
+
+
+

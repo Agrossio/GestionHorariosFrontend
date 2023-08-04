@@ -1,0 +1,54 @@
+<!-- <app-navbar></app-navbar> -->
+
+<section class="project-container">
+    <div class="list-general">
+      <div class="card list-project">
+        <input
+          type="text"
+          class="lupita input-search ps-3"
+          placeholder="Buscar tareas sin asignar..."
+          name="filterTask"
+          [(ngModel)]="filterTask"
+        />
+  
+        <div class="list-button">
+          <button
+            *ngFor="
+              let task of tasks | filter : [filterTask, 'title'];
+              let i = index
+            "
+            [ngClass]="{ selected: selectedProjectIndex === i }"
+            (click)="selectTask(task, i); open(assignTask); setModalTexts('Tasks', 'Asignar')"
+            class="list-item no-overflow-button"
+          >
+            {{ task.title }}
+          </button>
+        </div>
+      </div>
+  
+      <div class="project-card">
+        <div class="card project-card-detail">
+          <h2>Mis Tareas</h2>
+          <button
+          *ngFor="
+            let task of tasksDev | filter : [filterTask, 'title'];
+            let i = index
+          "
+          [ngClass]="{ selected: selectedProjectIndex === i }"
+          (click)="selectTask(task, i); open(editStatusTask); setModalTexts('Tasks', 'EditStatus')"
+          class="list-item no-overflow-button"
+        >
+          {{ task.title }}
+        </button>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <ng-template #assignTask>
+    <app-assign-task-modal [taskSelected] = taskSelected [email] = email></app-assign-task-modal>
+  </ng-template>
+  <ng-template #editStatusTask>
+    <app-edit-status-task-modal [taskSelected] = taskSelected></app-edit-status-task-modal>
+  </ng-template>

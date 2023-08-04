@@ -1,0 +1,110 @@
+.modal-body, .modal-header {
+  display: flex;
+  justify-content: center;
+}
+.modal-body {
+  padding-bottom: 25px;
+}
+.modal-icon {
+  width: 120px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+.div-doubleInput {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.div-input-style {
+  width: 350px;
+}
+.btn-close {
+  margin: 0;
+}
+.input-form {
+  margin: 0
+}
+input {
+  padding-top: 8px;
+  padding-right: 15px;
+  margin: 0;
+}
+label {
+  margin: 0;
+  top: 20px;
+}
+.input-form:focus ~ label, .input-form:not(:placeholder-shown) ~ label {
+  top: 10px;
+}
+.error-input {
+  top: 62px;
+}
+.button-register {
+  width: 200px;
+  margin: 0 auto;
+
+}
+
+.addDeveloperButton{
+  background-color: #4B3832;
+  color:whitesmoke;
+  width:10%;
+  height: fit-content;
+  text-align:center;
+  border-radius:50px
+}
+
+.developerFromList{
+  background-color: #FFF4E6;
+  list-style: none;
+  border-radius: 25px;
+  overflow: hidden;
+}
+.removeDeveloperFromListButton{
+  width: 10%;
+  text-align: center;
+  margin:0;
+  border-radius:50px;
+}
+.removeDeveloperFromListButton:hover{
+  background-color: inherit;
+}
+.lupita{
+  background-color: white;
+}
+.developerSuggestions {
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  top: 100%;
+}
+
+.developerSuggestions li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.developerSuggestions li:hover {
+  background-color: #f2f2f2;
+}
+
+.developerSuggestions button:hover {
+  color:inherit;
+  background-color: #f2f2f2;
+}
+

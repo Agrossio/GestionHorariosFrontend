@@ -1,0 +1,225 @@
+<div (click)="hideSuggestions()">
+  <div class="modal-header">
+    <div class="header">
+      <img class="modal-icon" src="assets/readmePics/iconProyects.png" />
+      <h4 class="modal-title" id="modal-basic-title">{{ modalTitle }}</h4>
+    </div>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="closeModal()"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form
+      [formGroup]="projectForm"
+      class="form"
+      (ngSubmit)="
+        modalButtonText == 'Crear' ? createProject() : modifyProject()
+      "
+      autocomplete="off"
+    >
+      <div class="div-doubleInput">
+        <div class="div-input-style">
+          <input
+            type="text"
+            id="project_name"
+            class="input-form ps-3 w-100 mx-0"
+            placeholder="Nombre del Proyecto"
+            formControlName="project_name"
+            name="project_name"
+          />
+          <label for="project_name">Nombre del Proyecto</label>
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('project_name')?.errors?.['required'] && projectForm.get('project_name')?.touched"
+            >*Campo obligatorio</span
+          >
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('project_name')?.errors?.['maxlength']"
+            >El nombre debe tener como máximo 45 caracteres</span
+          >
+        </div>
+
+        <!-- #TODO Refactorizar, buscando por nombre del cliente-->
+        <div class="div-input-style">
+          <select
+            id="cliente"
+            name="cliente"
+            class="input-form ps-3 w-100 mx-0"
+            formControlName="client_id"
+          >
+          <option value="client">Cliente</option>
+            <option
+              *ngFor="let cliente of clientsGet; let i = index"
+              [value]="i + 1"
+              value="{{ i + 1 }}"
+              [selected]="cliente.id === 1"
+            >
+              {{ cliente.business_name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="div-doubleInput">
+        <div class="div-input-style">
+          <input
+            type="text"
+            id="description"
+            class="input-form ps-3 w-100 mx-0"
+            placeholder="Descripción del Proyecto"
+            formControlName="description"
+            name="description"
+          />
+          <label for="description">Descripción</label>
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('description')?.errors?.['required'] && projectForm.get('description')?.touched"
+            >*Campo obligatorio</span
+          >
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('description')?.errors?.['maxlength']"
+            >La descripción debe tener como máximo 500 caracteres</span
+          >
+        </div>
+
+        <div class="div-input-style">
+          <input
+            type="text"
+            id="stack"
+            class="input-form ps-3 w-100 mx-0"
+            placeholder="Stack Tecnológico"
+            formControlName="stack"
+            name="stack"
+          />
+          <label for="stack">Stack</label>
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('stack')?.errors?.['required'] && projectForm.get('stack')?.touched"
+            >*Campo obligatorio</span
+          >
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('stack')?.errors?.['maxlength']"
+            >El stack debe tener como máximo 45 caracteres</span
+          >
+        </div>
+      </div>
+      <div class="div-doubleInput">
+        <div class="div-input-style">
+          <input
+            type="number"
+            id="hours_estimate"
+            class="input-form ps-3 w-100 mx-0"
+            placeholder="Horas Estimadas"
+            formControlName="hours_estimate"
+            name="hours_estimate"
+          />
+          <label for="hours_estimate">Horas Estimadas</label>
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('hours_estimate')?.errors?.['required'] && projectForm.get('hours_estimate')?.touched"
+            >*Campo obligatorio</span
+          >
+        </div>
+
+        <div class="div-input-style">
+          <input
+            type="number"
+            id="hour_price"
+            class="input-form ps-3 w-100 mx-0"
+            placeholder="Precio por hora"
+            formControlName="hour_price"
+            name="hour_price"
+          />
+          <label for="hour_price">Precio por hora</label>
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('hour_price')?.errors?.['required'] && projectForm.get('hour_price')?.touched"
+            >*Campo obligatorio</span
+          >
+        </div>
+      </div>
+
+      <div class="div-doubleInput">
+        <div class="div-input-style">
+          <input
+            type="date"
+            id="end_estimate_date"
+            class="input-form ps-3 w-100 mx-0"
+            placeholder="Precio por hora"
+            formControlName="end_estimate_date"
+            name="end_estimate_date"
+            (input)="validateYear('end_estimate_date', 'end_estimate_date')" 
+            required
+          />
+          <label for="end_estimate_date">Fecha estimada de finalización</label>
+          <span
+            class="error-input"
+            *ngIf="projectForm.get('end_estimate_date')?.errors?.['required'] && projectForm.get('end_estimate_date')?.touched"
+            >*Campo obligatorio</span
+          >
+          <span class="error-input align-span" *ngIf="projectForm.get('end_estimate_date')?.errors?.['invalidYear']">El formato del año debe tener 4 dígitos válidos</span>
+        </div>
+
+        <div class="div-input-style d-flex">
+          <input
+            type="text"
+            id="people"
+            class="input-form ps-3 w-100 mx-0 lupita"
+            placeholder="Desarrolladores"
+            formControlName="people"
+            name="people"
+            [(ngModel)]="newDeveloperName"
+            (keydown.enter)="addDeveloper($event)"
+            (input)="filterDevelopers()"
+          />
+          <label for="people">Desarrolladores</label>
+          <button
+            type="button"
+            class="btn ms-1 my-auto addDeveloperButton"
+            (click)="addDeveloper($event)"
+          >
+            +
+          </button>
+          <ul class="developerSuggestions" *ngIf="showSuggestions">
+            <li *ngFor="let developer of matchingDevelopers">
+              <button
+                type="button"
+                class="btn w-100"
+                (click)="addDeveloperFromSuggestion(developer)"
+              >
+                {{ developer }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <ul class="d-flex w-100 flex-wrap">
+        <li
+          class="developerFromList px-3 my-2 mx-1"
+          *ngFor="let developer of developers"
+        >
+          {{ developer }}
+          <button
+            type="button"
+            class="btn removeDeveloperFromListButton"
+            (click)="removeDeveloperFromList(developer)"
+          >
+            X
+          </button>
+        </li>
+      </ul>
+      <button
+        type="submit"
+        class="button-register ps-3"
+        [disabled]="projectForm.invalid"
+      >
+        {{ modalButtonText }}
+      </button>
+    </form>
+  </div>
+</div>

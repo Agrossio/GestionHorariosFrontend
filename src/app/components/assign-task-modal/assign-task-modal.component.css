@@ -1,0 +1,70 @@
+.modal-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    align-items: center
+}
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 30px 30px 30px;
+}
+.modal-title {
+    text-align: center;
+}
+.dataSprint {
+    font-size: 20px;
+    margin: 0;
+}
+.box-data p {
+    font-size: 15px;
+    margin: 0;
+    text-align: center;
+}
+.box-data {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    width: 80%;
+}
+.box-secondaryData {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+.box-buttons {
+    display: flex;
+    gap: 15px;
+}
+.header p {
+    margin: 0;
+}
+.header h4 {
+    padding: 10px;
+}
+.modal-icon {
+    padding-top: 30px;
+    width: 100px;
+    margin: 0 auto;
+}
+.dataTask, .box-dataDates {
+    border-radius: 10px;
+    border: 1px solid #4B3832;
+    padding: 10px 0;
+} 
+.dataTask {
+    width: 100%;
+}
+.box-dataDates {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}

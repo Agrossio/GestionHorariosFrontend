@@ -1,0 +1,305 @@
+.users-container {
+  display: flex;
+  flex-direction: column;
+}
+.head-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 3vh 3vh 0 19vh;
+}
+.list-general {
+  display: flex;
+  flex-direction: row;
+  margin: 2.5vh 2.5vh 2.5vh 0;
+}
+.list-generic {
+  height: 80vh;
+  margin: 0 3vh 0 18vh;
+  width: 500px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 20px;
+}
+.list-title {
+  margin: 0;
+}
+.list-title h2 {
+  color: #854442;
+  font-weight: 600;
+  margin: 20px 0 0 0;
+}
+.list-title p {
+  color: #D0A3A3;
+  font-weight: 600;
+  margin: 0;
+}
+.list-button, .list-solicitudes {
+  height: 100%;
+  overflow: auto;
+  padding-right: 10px;
+}
+.list-button::-webkit-scrollbar, .list-solicitudes::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #FFF4E6;
+  border-radius: 5px;
+}
+.list-button::-webkit-scrollbar-thumb, .list-solicitudes::-webkit-scrollbar-thumb {
+  background: #4B3832;
+  border-radius: 5px;
+}
+.list-button::-webkit-scrollbar-thumb:hover, .list-solicitudes::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 56, 50, 0.85);
+  transition: all 0.5s;
+}
+.list-item, .list-itemSolicitud {
+  background-color: #BE9B7B;
+  color: black;
+  border-radius: 10px;
+  border: 1px solid #4B3832;
+  font-weight: 400;
+  width: 100%;
+  text-align: left;
+  padding: 0 15px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.list-item:hover, .button-solicitud:hover {
+  background-color: #4B3832;
+  color: #BE9B7B;
+  transition: all 0.5s;
+}
+.list-itemSolicitud {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-itemSolicitud h3 {
+  font-size: 23px;
+}
+.list-itemSolicitud p, h3 {
+  margin: 0;
+  font-size: 12px;
+}
+.input-search {
+  height: 42px;
+}
+.user-card {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.user-button {
+  height: 60px;
+}
+.solicitud-detail {
+  height: 80vh;
+  width: 100%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  padding: 20px;
+}
+.user-card-detail {
+  height: 80vh;
+  width: 100%;
+  border-radius: 15px;
+  padding: 20px;
+}
+.text-center {
+  align-items: center;
+}
+.user-title {
+  margin: 2vh 0 0 2vh;
+}
+.user-title h2 {
+  font-size: 40px;
+  color: whitesmoke;
+  font-weight: 600;
+}
+.box-buttonSolicitud {
+  display: flex;
+  gap: 1vh;
+}
+.button-modal {
+  width: 30px;
+  background-color: transparent;
+}
+.button-modal:hover {
+  border: none;
+}
+.button-solicitud {
+  width: 30px;
+  border-radius: 50%;
+}
+.list-solicitudes::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #FFF4E6;
+  border-radius: 5px;
+}
+.list-solicitudes::-webkit-scrollbar-thumb {
+  background: #4B3832;
+  border-radius: 5px;
+}
+.list-solicitudes::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 56, 50, 0.85);
+  transition: all 0.5s;
+}
+.image {
+  border-radius: 100%;
+  width: 10%;
+}
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+.buttons-up {
+  display: flex;
+  gap: 2vh;
+}
+.person-button{
+  height: 60px;
+}
+.list-button, .list-proyects {
+  height: 100%;
+  overflow: auto;
+  padding-right: 10px;
+}
+.list-button::-webkit-scrollbar, .list-proyects::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #fff4e6;
+  border-radius: 5px;
+}
+.list-button::-webkit-scrollbar-thumb, .list-proyects::-webkit-scrollbar-thumb {
+  background: #4b3832;
+  border-radius: 5px;
+}
+.list-button::-webkit-scrollbar-thumb:hover, .list-proyects::-webkit-scrollbar-thumb:hover {
+  background: rgba(75, 56, 50, 0.85);
+  transition: all 0.5s;
+}
+.list-item, .item-proyect {
+  background-color: #BE9B7B;
+  color: black;
+  border-radius: 10px;
+  border: 1px solid #4B3832;
+  font-weight: 400;
+  width: 100%;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 15px;
+  height: 45px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+.list-item:hover {
+  background-color: #4b3832;
+  color: #be9b7b;
+  transition: all 0.5s;
+}
+.item-proyect {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+.item-proyect h3 {
+  font-size: 23px;
+}
+.item-proyect p, h3 {
+  margin: 0;
+}
+/* lista proyectos */
+.imagen-detalle {
+  width: 40px;
+  height: 40px;
+}
+.modal-body {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-body-update {
+  background-color: #BE9B7B;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal-icon {
+  width: 20%;
+}
+
+.div-button-close {
+  width: 100%;
+  background-color: #BE9B7B;
+  display: flex;
+  justify-content: end;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name-lastname {
+  width: 100%;
+}
+
+.boton-close {
+  border: 2px solid transparent;
+  margin: 0px 10px;
+  height: 20px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.selected {
+  background-color: #4B3832;
+  color: whitesmoke;
+}
+
+.list-item span.selected, .list-item:hover span {
+  background-color: #BE9B7B;
+  color: #4B3832;
+}
+
+.sub-info {
+  color:#FFF4E6;
+  font-size: 8px;
+  font-weight: 600;
+  background-color:#4B3832;
+  border-radius: 5px;
+  margin-left: 5px;
+  padding: 2px 5px;
+}
+.no-overflow-button{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.divbutton-userlist {
+  display: flex;
+  justify-content: space-around;
+}
+.button-userlist {
+  width: 10em;
+  height: 2.5em;
+  font-size: 15px;
+}

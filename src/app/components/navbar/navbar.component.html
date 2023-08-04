@@ -1,0 +1,15 @@
+<nav>
+    <div class="containerButtons">
+        <app-profile-icon-navbar></app-profile-icon-navbar>
+        <app-users-icon-navbar *ngIf="rolAdmin"></app-users-icon-navbar>
+        <app-projects-icon-navbar></app-projects-icon-navbar>
+        <app-clients-icon-navbar *ngIf="rolAdmin"></app-clients-icon-navbar>
+        <app-calendar-icon-navbar *ngIf="rolAdmin"></app-calendar-icon-navbar>
+    </div>
+    <a class="logOutButton" (click)="logOut()">
+        <img class="imageLogOut"
+        src="../../../assets/readmePics/iconLogOut.png"
+        alt="logo LogOut"
+       >
+    </a>
+</nav>

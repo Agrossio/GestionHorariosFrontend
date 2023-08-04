@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+
+<section class="d-flex">
+  <div class="head-box">
+    <div class="list-title">
+      <h2>Listado de clientes</h2>
+      <p>Visualizar todos los clientes</p>
+    </div>
+    <div class="buttons-up"><button *ngIf="clientInDetail" class="client-button" (click)="open(content)" (click)="setModalTexts('Editar Cliente', 'Editar')">Editar cliente</button>
+      <button class="client-button" *ngIf="clientInDetail" (click)="deleteClient(clientInDetail!.client_id)">Eliminar cliente</button>
+      <button class="client-button" (click)="open(content)" (click)="setModalTexts('Crear Cliente', 'Crear')">Crear cliente</button>
+    </div>
+  </div>
+  <app-loader *ngIf="showLoader" class="reloj-loader" ></app-loader>
+  <div class="list-general" *ngIf="!showLoader">
+<!--    seccion listado de clientes-->
+    <div class="card list-client">
+      <input
+        type="search"
+        class="lupita input-search ps-3"
+        placeholder="Buscar cliente..."
+        name="filterClient"
+        [(ngModel)]="filterClient"/>
+
+      <div class="list-button">
+        <button
+          *ngFor="let client of clients | filter:[filterClient, 'business_name']; let i = index"
+          [ngClass]="{ 'selected': selectedUserIndex === i }"
+          (click)="clientSelected = client; selectedUserIndex = i; view = 'Detalles'; openClientDetail(client.client_id)"
+          class="list-item no-overflow-button">
+          {{ client.business_name }}
+        </button>
+      </div>
+    </div>
+<!--    seccion detalle cliente-->
+    <div class="client-card">
+      <div  class="card client-card-detail">
+        <div class="client-title" *ngIf="clientInDetail && clients">
+          <h2 class="text-light h2 fw-bold">{{clientInDetail.business_name}}</h2>
+          <p>Mail de contacto: {{clientInDetail.email}}</p>
+          <p>Cliente desde: {{clientInDetail.initial_date | date}}</p>
+          <p>Proyectos actuales en desarrollo: {{clientInDetail.projects?.length}}</p>
+          <h3 class="h2 fw-bold">Proyectos</h3>
+          <div *ngIf="clientInDetail?.projects?.length === 0" class="list-proyects mt-4">
+            <img src="assets/images/box.png" alt="Vacio" style="width: 16%;">
+            <p class="d-inline-block h-auto mb-4 p-2 m-1 fs-3" style="width: fit-content;">No hay proyectos asociados a este cliente</p>
+          </div>
+        </div>
+        <div *ngIf="!clientInDetail" class="no-content-generic">
+          <img src="assets/images/mano.png" alt="Todo Ok" class="check-icon">
+          <h2>Seleccione un cliente del listado</h2>
+        </div>
+
+        <div class="list-proyects" *ngIf="clientInDetail">
+          <div *ngFor="let project of clientInDetail?.projects" class="item-proyect" [routerLink]="['/project-view', project.project_id]">
+            <div class="d-flex flex-column">
+              <h3>{{project.name}}</h3>
+              <p>{{project.description}}</p>
+            </div>
+            <img
+              class="imagen-detalle"
+              src="../../../assets/images/iconDetail.png"
+              alt="Imagen detalle"
+            />
+          </div>
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Modal crear/editar cliente -->
+<ng-template #content let-modal >
+  <div id="modal-content">
+
+    <div class="modal-header">
+      <div class="header">
+        <img class="modal-icon" src="assets/readmePics/iconClients.png">
+        <h4 class="modal-title" id="modal-basic-title">{{modalTitle}}</h4>
+      </div>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="clientForm" class="form mt-4" (ngSubmit)="modalButtonText == 'Crear' ? createClient() : modifyClient() " autocomplete="off">
+
+        <div class="div-input-style">
+          <input type="text" id="business_name" class="input-form ps-3" placeholder="Razón Social" formControlName="business_name" name="business_name">
+          <label for="business_name">Razón Social</label>
+          <span class="error-input" *ngIf="clientForm.get('business_name')?.errors?.['required'] && clientForm.get('business_name')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="clientForm.get('business_name')?.errors?.['maxlength']">El nombre debe tener como máximo 45 caracteres</span>
+        </div>
+
+        <div class="div-input-style">
+          <input id="email" class="input-form ps-3" type="email" placeholder="Email" formControlName="email" name="email">
+          <label for="email">Email</label>
+          <span class="error-input" *ngIf="clientForm.get('email')?.errors?.['required'] && clientForm.get('email')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="clientForm.get('email')?.errors?.['maxlength']">El email debe tener como máximo 45 caracteres</span>
+          <span class="error-input" *ngIf="clientForm.get('email')?.errors?.['email'] && clientForm.get('email')?.touched">El correo electrónico no es válido.</span>
+        </div>
+
+        <div class="div-input-style">
+          <input id="dirección" class="input-form ps-3" type="text" placeholder="Dirección" formControlName="address">
+          <label for="dirección">Dirección</label>
+          <span class="error-input" *ngIf="clientForm.get('address')?.errors?.['required'] && clientForm.get('address')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="clientForm.get('address')?.errors?.['maxlength']">La dirección debe tener como máximo 255 caracteres</span>
+        </div>
+
+        <div class="div-input-style w-100" >
+          <input id="date" class="input-form ps-3" type="date" formControlName="initial_date" name="initial_date" (input)="validateYear('date', 'initial_date')" required/>
+          <label for="date">Inicio de Relación Comercial</label>
+          <span class="error-input" *ngIf="clientForm.get('initial_date')?.errors?.['required'] && clientForm.get('initial_date')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="clientForm.get('initial_date')?.errors?.['invalidYear']">El formato del año debe tener 4 dígitos válidos</span>
+        </div>
+
+        <button type="submit" class="button-register ps-3" [disabled]="clientForm.invalid" >{{modalButtonText}}</button>
+      </form>
+    </div>
+  </div>
+</ng-template>

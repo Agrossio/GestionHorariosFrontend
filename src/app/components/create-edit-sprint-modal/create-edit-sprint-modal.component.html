@@ -1,0 +1,154 @@
+    <div class="modal-header">
+      <div class="header">
+        <img class="modal-icon" src="assets/images/clock-sprint.png" alt="imagen de usuario">
+        <h4 class="modal-title">Sprints</h4>
+      </div>
+    </div>
+    <div class="modal-body">
+        <div class="box-Sprint" *ngFor="let sprint of sprints">
+            <div class="box-number">
+                <p>Número</p>
+                <h3>{{sprint.sprint_number}}</h3>
+            </div>
+            <div class="box-principalSprint" *ngIf="!sprintEditStates[sprint.sprint_id]">
+                <div class="box-dataSprint">
+                    <div class="box-initialDate">
+                        <p>Fecha de Inicio</p>
+                        <h3>{{sprint.start_date}}</h3>
+                    </div>
+                    <div class="box-finishDate">
+                        <p>Fecha de Finalización</p>
+                        <h3>{{sprint.end_date}}</h3>
+                    </div>
+                </div>
+                <div class="box-buttonSprint">
+                    <button class="button-sprint" (click)="showformEditSprint(sprint.sprint_id)" >Editar</button>
+                </div>
+            </div>
+            <form 
+                [formGroup]="editSprintForms[sprint.sprint_id]" 
+                autocomplete="off" 
+                *ngIf="sprintEditStates[sprint.sprint_id]"
+                (ngSubmit)="modifySprint(sprint.sprint_id)"
+            >
+                <div class="box-inputs">
+                    <div class="div-input-style w-100">
+                        <input 
+                            class="input-form ps-3 w-100 mx-0"
+                            type="date"
+                            formControlName="start_date" 
+                            name="start_date"
+                            id="start_date"
+                            (input)="validateYear('start_date', 'start_date', sprint.sprint_id)" 
+                            required
+                        />
+                        <label for="start_date" class="form-label">Fecha de Inicio</label>
+                        <span 
+                            class="error-input align-span" 
+                            *ngIf="editSprintForms[sprint.sprint_id].get('start_date')?.errors?.['invalidYear']"
+                            >El formato del año debe tener 4 dígitos válidos
+                        </span>
+                    </div>
+                    <div class="div-input-style w-100">
+                        <input 
+                            class="input-form ps-3 w-100 mx-0" 
+                            id="end_date"
+                            type="date"
+                            formControlName="end_date" 
+                            name="end_date"
+                            (input)="validateYear('end_date', 'end_date', sprint.sprint_id)" 
+                            required
+                        />
+                        <label for="end_date" class="form-label">Fecha de Finalización</label>
+                        <span 
+                            class="error-input align-span" 
+                            *ngIf="editSprintForms[sprint.sprint_id].get('end_date')?.errors?.['invalidYear']"
+                            >El formato del año debe tener 4 dígitos válidos
+                        </span>
+                    </div>  
+                    <div class="box-buttonSolicitud">
+                        <button 
+                            class="button-modal" 
+                            type="submit"
+                        >
+                            <img class="button-solicitud" src="../../../assets/images/accept.png" alt="">
+                        </button>
+                        <button 
+                            class="button-modal" 
+                            (click)="cancelEdit(sprint.sprint_id)"
+                        >
+                            <img class="button-solicitud" src="../../../assets/images/cancel.png" alt="">
+                        </button>
+                    </div>
+                </div>   
+            </form>
+        </div>
+
+        <div class="box-buttonsCreateDelete" *ngIf="!formCreateSprint" >
+            <button type="submit" class="py-2 buttonFormCreate" (click)="showFormCreateSprint()">Crear Sprint</button>
+            <button class="button-delete" (click)="deleteSprint(lastSprintId)">Eliminar último Sprint</button>
+        </div>
+        <div class="boxCreateSprint" *ngIf="formCreateSprint">
+            <h2 class="titleCreateSprint">Crear Sprint</h2>
+            <div class="boxCreateForm">
+                <div class="box-number">
+                    <p>Número</p>
+                    <h3>{{numberNewSprint}}</h3>
+                </div>
+                <form 
+                    [formGroup]="createSprintForm"
+                    autocomplete="off"
+                    (ngSubmit)="createSprint()"
+                >
+                    <div class="box-inputs">
+                        <div class="div-input-style w-100">
+                            <input 
+                                class="input-form ps-3 w-100 mx-0"
+                                type="date"
+                                formControlName="start_date" 
+                                name="start_date"
+                                id="start_date"
+                                (input)="validateYear('start_date', 'start_date', -1)" 
+                                required
+                            />
+                            <label for="start_date" class="form-label">Fecha de Inicio</label>
+                            <span 
+                                class="error-input align-span" 
+                                *ngIf="createSprintForm.get('start_date')?.errors?.['invalidYear']"
+                                >El formato del año debe tener 4 dígitos válidos
+                            </span>
+                        </div>
+                        <div class="div-input-style w-100">
+                            <input 
+                                class="input-form ps-3 w-100 mx-0" id="end_date"
+                                type="date"
+                                formControlName="end_date" 
+                                name="end_date"
+                                (input)="validateYear('end_date', 'end_date', -1)" 
+                                required
+                            />
+                            <label for="end_date" class="form-label">Fecha de Finalización</label>
+                            <span 
+                                class="error-input align-span" 
+                                *ngIf="createSprintForm.get('end_date')?.errors?.['invalidYear']"
+                                >El formato del año debe tener 4 dígitos válidos
+                            </span>
+                        </div>  
+                        <div class="box-buttonSolicitud">
+                            <button 
+                                class="button-modal"
+                            >
+                                <img class="button-solicitud" src="../../../assets/images/accept.png" alt="">
+                            </button>
+                            <button 
+                                class="button-modal" 
+                                (click)="cancelCreate()"
+                            >
+                                <img class="button-solicitud" src="../../../assets/images/cancel.png" alt="">
+                            </button>
+                        </div>
+                    </div>     
+                </form>
+            </div>    
+        </div>
+    </div>

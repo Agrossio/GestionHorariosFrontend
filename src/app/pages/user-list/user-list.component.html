@@ -1,0 +1,263 @@
+<app-navbar></app-navbar>
+<section class="users-container">
+  <div class="head-box">
+    <div class="list-title">
+      <h2>Listado de Usuarios</h2>
+      <p>Visualizar todos los usuarios</p>
+    </div>
+    <div class="buttons-up">
+      <button class="user-button" (click)="
+            view='Solicitudes';
+            selectedUserIndex = -1;
+            userSelected=null">Solicitudes
+      </button>
+    </div>
+  </div>
+
+  <app-loader *ngIf="showLoader" class="reloj-loader" ></app-loader>
+  <div class="list-general" *ngIf="!showLoader">
+    <div class="card list-generic">
+      <input type="text" class="lupita input-search ps-3" placeholder="Buscar usuario..." name="filterUser"
+             [(ngModel)]="filterUser">
+             <div class="divbutton-userlist">
+              <button class="button-userlist" (click)="valueConn='Todos'" >Todos</button>
+              <button class="button-userlist" (click)="valueConn='Conectados'">Conectados</button>
+            </div>
+      <div class="list-button">
+        <button *ngFor="let user of valueConn === 'Conectados' ? userConnected : users | filter:[filterUser, 'lastname', 'name']; let i = index" class="list-item no-overflow-button"
+                [ngClass]="{ 'selected': selectedUserIndex === i }"
+                (click)="selectedUserIndex = i;
+                  view = 'Detalles';
+                  selectUser(user.email);"
+        >{{user.name}} {{user.lastname}} 
+        <span *ngFor="let role of user.roles" class="sub-info no-overflow-button" [ngClass]="{ 'selected': selectedUserIndex === i }">{{role.role_name}} </span> </button>
+      </div>
+    </div>
+    <div class="user-card">
+      <!-- SOLICITUDES -->
+      <div *ngIf="view === 'Solicitudes'" class="card solicitud-detail">
+        <div class="user-title">
+          <h2>Solicitudes de roles</h2>
+        </div>
+        <div *ngIf="solicitudes?.length === 0" class="no-content-generic">
+          <img src="assets/images/check.png" alt="Todo Ok" class="check-icon">
+          <h2>No tienes solicitudes de rol</h2>
+        </div>
+        <div *ngIf="solicitudes!.length > 0" class="list-solicitudes">
+          <div *ngFor="let solicitud of solicitudes; let i = index" class="list-itemSolicitud">
+            <div>
+              <h3>{{solicitud.name}}</h3>
+              <p>{{solicitud.email}}</p>
+            </div>
+            <div class="box-buttonSolicitud">
+              <button class="button-modal" (click)="open(content, solicitud.email, solicitud.name)"><img
+                class="button-solicitud" src="../../../assets/images/accept.png" alt=""></button>
+              <button class="button-modal" (click)="deletePerson(solicitud.email)"><img class="button-solicitud"
+                                                                                        src="../../../assets/images/cancel.png"
+                                                                                        alt=""></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- USER DETAILS -->
+      <div *ngIf="userSelected !== null" class="card user-card-detail">
+        <div class="text-center">
+          <img [src]="'https://ui-avatars.com/api/?name=' + userSelected.name + '+' + userSelected.lastname"
+               class="image" alt="imagen de usuario"/>
+          <p class="text-light h4 fw-bold mt-2">{{userSelected.name}} {{userSelected.lastname}}</p>
+          <p class="text-light"><i>{{userSelected.email}}</i></p>
+        </div>
+
+        <p class="h4 fw-bold">Proyectos trabajados</p>
+        <div *ngIf="userSelected.projects!.length === 0" class="list-proyects mt-2">
+          <img src="assets/images/box.png" alt="Vacio" style="width: 8%;">
+          <p class="d-inline-block h-auto mb-4 p-2 m-1 fs-6" style="width: fit-content;">No hay proyectos asociados a este usuario</p>
+        </div>
+        <div *ngIf="userSelected.projects!.length > 0" class="list-proyects">
+          <div *ngFor="let project of userSelected.projects"
+               class="item-proyect">
+            <div class="d-flex flex-column">
+              <h3>{{project.name}}</h3>
+              <p>{{project.description}}</p>
+            </div>
+            <img
+              class="imagen-detalle"
+              src="../../../assets/images/iconDetail.png"
+              alt="Imagen detalle"
+            />
+          </div>
+        </div>
+        <div>
+          <p class="h4 fw-bold">Información</p>
+          <p class="mb-0">Horas trabajadas en el mes: 20</p>
+          <p class="mb-0">Antiguedad: 5 años</p>
+          <p class="mb-0">Rol: Lider técnico</p>
+        </div>
+
+        <div class="flex mt-5">
+          <button class="person-button" (click)="openUpdate(update)">Editar Usuario</button>
+          <button class="person-button" (click)="deletePerson(userSelected.email)">Eliminar Usuario</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Solicitud</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <form class="modal-body" [formGroup]="acceptForm" (ngSubmit)="acceptRequest(emailModal)">
+      <div class="list-itemSolicitud" style="margin: 0 auto;">
+        <div class="item-request">
+          <p>Usuario: {{nameModal}}</p>
+          <p>Email: {{emailModal}}</p>
+        </div>
+      </div>
+      <div class="form-modalRequest">
+        <p class="px-0 mb-1 d-flex justify-content-around">Seleccionar rol</p>
+
+        <div class="d-flex">
+          <input type="checkbox" name="ADMIN"
+                 formControlName="ADMIN">
+          <p class="my-0 p-2">Administrador</p>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" name="MANAGEMENT" formControlName="MANAGEMENT">
+          <p class="my-0 p-2">Gestión</p>
+        </div>
+        <div class="d-flex">
+          <input type="checkbox" name="DEVELOPER"
+                 formControlName="DEVELOPER">
+          <p class="my-0 p-2">Desarrollador</p>
+        </div>
+
+      </div>
+      <div class="w-100 my-2">
+        <p class="px-0 mb-1 d-flex justify-content-around" for="startJobRelation">Inicio de relación laboral</p>
+        <div class="input-group">
+          <input
+            id="startJobRelation"
+            class=" w-100 ps-3 form-control"
+            name="startJobRelation"
+            formControlName="startJobRelation"
+            type="date"
+            (input)="validateYear('startJobRelation', 'startJobRelation')" 
+            required
+          />
+        </div>
+        <div *ngIf="acceptForm.controls['startJobRelation'].errors && acceptForm.controls['startJobRelation'].dirty"
+             class="error-input">
+          <p *ngIf="acceptForm.controls['startJobRelation'].errors['required']">Campo obligatorio</p>
+        </div>
+        <div *ngIf="acceptForm.controls['startJobRelation'].errors && acceptForm.controls['startJobRelation'].dirty"
+             class="error-input">
+          <p *ngIf="personForm.get('startJobRelation')?.errors?.['invalidYear']">El formato del año debe tener 4 dígitos válidos</p>
+        </div>
+      </div>
+      <div class="modal-footer w-100">
+        <button type="submit" class="w-100 py-2 mt-2" [disabled]="acceptForm.invalid">Confirmar</button>
+      </div>
+    </form>
+  </ng-template>
+
+  <ng-template #update let-modal>
+      <div class="modal-header">
+        <div class="div-button-close">
+          <button type="button" class="btn-close boton-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+      <div class="header">
+        <img class="modal-icon" src="assets/readmePics/iconUsers.png" alt="imagen de usuario">
+        <h4 class="modal-title">Modificar usuario</h4>
+      </div>
+    </div>
+    <form [formGroup]="personForm" class="modal-body-update" (ngSubmit)="updatePerson()" autocomplete="off">
+      <div class="d-flex name-lastname">
+        <div class="div-input-style w-100 me-2">
+          <input type="text" class="input-form ps-3 w-100 mx-0" placeholder="Nombre" formControlName="name" name="name"
+                 id="name">
+          <label for="name" class="form-label">Nombre</label>
+          <span class="error-input"
+                *ngIf="personForm.get('name')?.errors?.['required'] && personForm.get('name')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="personForm.get('name')?.errors?.['maxlength']">El nombre debe tener como máximo 45 caracteres</span>
+        </div>
+
+        <div class="div-input-style w-100">
+          <input type="text" class="input-form ps-3 w-100 mx-0" placeholder="Apellido" formControlName="lastname"
+                 name="lastname" id="lastname">
+          <label for="lastname" class="form-label">Apellido</label>
+          <span class="error-input"
+                *ngIf="personForm.get('lastname')?.errors?.['required'] && personForm.get('lastname')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="personForm.get('lastname')?.errors?.['maxlength']">El apellido debe tener como máximo 45 caracteres</span>
+        </div>
+      </div>
+
+      <div class="div-input-style w-100">
+        <input class="input-form ps-3 w-100 mx-0" type="email" placeholder="Email" formControlName="email" name="email"
+               id="email">
+        <label for="email" class="form-label">Email</label>
+
+        <span class="error-input"
+              *ngIf="personForm.get('email')?.errors?.['required'] && personForm.get('email')?.touched">*Campo obligatorio</span>
+        <span class="error-input" *ngIf="personForm.get('email')?.errors?.['maxlength']">El email debe tener como máximo 45 caracteres</span>
+        <span class="error-input"
+              *ngIf="personForm.get('email')?.errors?.['email'] && personForm.get('email')?.touched">El correo electrónico no es válido.</span>
+      </div>
+
+      <div class="div-input-style w-100">
+        <input class="input-form ps-3 w-100 mx-0" type="text" placeholder="Cuil/Cuit" formControlName="cuil" id="cuil">
+        <label for="cuil" class="form-label">Cuil</label>
+
+        <span class="error-input"
+              *ngIf="personForm.get('cuil')?.errors?.['required'] && personForm.get('cuil')?.touched">*Campo obligatorio</span>
+        <span class="error-input" *ngIf="personForm.get('cuil')?.errors?.['minlength']">El Cuil debe tener como máximo 10 caracteres</span>
+        <span class="error-input" *ngIf="personForm.get('cuil')?.errors?.['maxlength']">El Cuil debe tener como máximo 15 caracteres</span>
+      </div>
+
+      <div class="d-flex align-content-between w-100">
+        <div class="div-input-style w-25 me-2">
+          <input class="input-form ps-3 w-100 mx-0" type="number" placeholder="Horas por jornada"
+                 formControlName="hours_journal" id="hours">
+          <label for="hours" class="form-label">hs/día</label>
+          <span class="error-input"
+                *ngIf="personForm.get('hours_journal')?.errors?.['required'] && personForm.get('hours_journal')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="personForm.get('hours_journal')?.errors?.['max']">Las horas trabajadas por día no pueden superar 10</span>
+        </div>
+        <div class="div-input-style w-75">
+          <input class="input-form ps-3 w-100 mx-0" type="text" placeholder="Teléfono" formControlName="tel" id="tel">
+          <label for="tel" class="form-label">Teléfono</label>
+
+          <span class="error-input"
+                *ngIf="personForm.get('tel')?.errors?.['required'] && personForm.get('tel')?.touched">*Campo obligatorio</span>
+          <span class="error-input" *ngIf="personForm.get('tel')?.errors?.['maxlength']">El teléfono debe tener como máximo 15 caracteres</span>
+        </div>
+      </div>
+      <p class="mb-0">Seleccionar rol</p>
+      <div class="d-flex mb-2">
+        <input type="checkbox" name="ADMIN"
+               formControlName="ADMIN">
+        <p class="mx-2 my-0">Administrador</p>
+
+        <input type="checkbox" name="MANAGEMENT" formControlName="MANAGEMENT">
+        <p class="mx-2 my-0">Gestión</p>
+
+        <input type="checkbox" name="DEVELOPER"
+               formControlName="DEVELOPER">
+        <p class="mx-2 my-0">Desarrollador</p>
+
+      </div>
+      <div class="div-input-style w-100">
+        <input class="input-form ps-3 w-100 mx-0" id="inital_date" type="date"
+               formControlName="startJobRelation" name="startJobRelation"
+               (input)="validateYear('inital_date', 'startJobRelation')" 
+               required/>
+        <label for="date" class="form-label">Inicio de Relación Laboral</label>
+        <span class="error-input" *ngIf="personForm.get('startJobRelation')?.errors?.['invalidYear']"
+                                >El formato del año debe tener 4 dígitos válidos</span>
+      </div>
+
+      <button type="submit" class="w-100 py-2 mt-2" [disabled]="personForm.invalid">Actualizar</button>
+    </form>
+  </ng-template>
+</section>

@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <div class="header">
+        <img class="modal-icon" src="assets/images/taskIconModal.png" alt="imagen de tarea">
+        <h4 class="modal-title">Editar Status</h4>
+        <p><b>{{taskSelected.title}}</b></p>
+
+    </div>
+</div>
+<div class="modal-body">
+    <div class="box-data">
+        <p class="description-task">Descripción de la tarea Lorem ipsum dolor sit amet consectetur adipiscing elit malesuada platea, ac massa per magnis cursus facilisis curae aptent maecenas, condimentum vulputate mi tortor parturient metus fringilla in.</p>
+        <div class="box-secondaryData">
+            <p class="dataTask"><b>Prioridad:</b> {{taskSelected.priority_name}}</p>
+            <p class="dataTask"><b>Horas estimadas:</b> {{taskSelected.hours_estimate}}</p>
+        </div>
+        <div class="box-dataDates">
+            <p><b>Fechas estimadas:</b></p>
+            <div class="box-secondaryData">
+                <p><b>Inicio:</b> {{taskSelected.start_date}}</p>
+                <p><b>Finalización:</b> {{taskSelected.end_date}}</p>
+            </div>
+        </div>
+    </div>
+    <form class="formEdit" [formGroup]="formChangeStatus">
+        <div class="div-input-style my-0" >
+        <select class="input-form ps-3 w-100 mx-0 my-0" formControlName="status" (click)="addInputHoursWorked()" id="status"
+        name="status">
+            <option value="">Estatus</option>
+            <option value="IN_PROGRESS">IN PROGRESS</option>
+            <option value="PENDING">PENDING</option>
+            <option value="DONE">DONE</option>
+            <option value="REVIEWING">REVIEWING</option>
+            <option value="CANCELLED">CANCELLED</option>
+        </select>
+        <label for="status">Status</label>
+        </div>
+        <div class="div-input-style my-0" *ngIf="showInputHoursWorked">
+            <input 
+                id="hoursWorked"
+                name="hoursWorked"
+                type="number" 
+                class="input-form ps-3 w-100 mx-0" 
+            >
+            <label for="hoursWorked">Horas trabajadas</label>
+        </div>
+        <div class="box-buttons">
+            <button (click)="editStatus()">Confirmar</button>
+            <button (click)="cancelAssignTask()">Cancelar</button>
+        </div>
+    </form>
+</div>

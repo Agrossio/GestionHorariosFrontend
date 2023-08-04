@@ -1,0 +1,30 @@
+.head-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 3vh 3vh 0 19vh;
+}
+
+.list-title{
+  margin: 0;
+}
+
+.list-title h2 {
+  color: #854442;
+  font-weight: 600;
+  margin: 20px 0 0 0;
+}
+
+.list-title p{
+  color: #D0A3A3;
+  font-weight: 600;
+  margin: 0;
+}
+
+.buttons-up {
+  display: flex;
+  gap: 2vh;
+}
+.project-button{
+  height: 60px;
+}

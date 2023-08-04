@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<section class="d-flex" *ngIf="clientInDetail">
+  <div class="head-box">
+    <div class="list-title">
+      <h2 class="h2 fw-bold">{{clientInDetail!.business_name}}</h2>
+      <p>Cliente desde: {{clientInDetail!.initial_date | date}}</p>
+      <p>Proyectos actuales en desarrollo: </p>
+    </div>
+    <div class="buttons-up column">
+      <button class="action-button" (click)="deleteClient(clientInDetail!.client_id)">Eliminar cliente</button>
+      <button class="action-button" >Agregar Proyecto</button>
+      <button class="action-button" >Crear Informe</button>
+    </div>
+  </div>
+
+  <div class="detail-box">
+    <div class="no-content-generic" style="width: 80%; margin: auto;">
+      <img src="assets/images/work-in-progress.png" alt="En construcción" class="check-icon">
+      <h2>Apartado en construcción</h2>
+    </div>
+  </div>
+</section>

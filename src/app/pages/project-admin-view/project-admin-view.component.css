@@ -1,0 +1,188 @@
+.d-flex {
+  display: flex;
+  flex-direction: column;
+  min-height: 94vh;
+}
+
+.head-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3vh 3vh 0 19vh;
+  flex-grow: 1;
+}
+
+.list-title {
+  margin: 5px 30px 30px 30px;
+}
+
+.list-title h2 {
+  /*color: #854442;*/
+  font-weight: 600;
+  margin: 20px 0 0 0;
+  font-size: 40px;
+  color: black;
+}
+
+.list-title p {
+  margin: 0 0 10px 0;
+
+  font-size: 25px;
+}
+
+.buttons-up {
+  display: flex;
+  align-self: center;
+  gap: 3vh;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-button {
+  font-size: 15px;
+  height: 55px;
+  width: 210px;
+}
+.detail-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3vh 3vh 0 19vh;
+  background: #be9b7b;
+  border-radius: 15px;
+  height: auto;
+  flex-grow: 15;
+  min-height: 45.3vh;
+}
+.d-box {
+  margin-left: 0;
+  margin-top: 0;
+  min-height: 40vh;
+  align-self: flex-start;
+}
+.list-item {
+  background-color: #be9b7b;
+  color: black;
+  border-radius: 10px;
+  border: 1px solid #4b3832;
+  font-weight: 400;
+  width: 40%;
+  text-align: left;
+  padding: 0 15px;
+  height: 45px;
+  margin: 10px;
+}
+
+.list-item:hover {
+  background-color: #4b3832;
+  color: #be9b7b;
+  transition: all 0.5s;
+}
+
+.title-button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+th,
+td {
+  border: solid 2px #4b3832;
+  padding: 6px;
+}
+
+th {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.table {
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #4b3832;
+  background-color: #be9b7b;
+}
+
+.box-color {
+  background-color: transparent;
+}
+
+.div-button-pagination {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-button {
+  width: 30px;
+  height: 30px;
+  color: #fff4e6;
+  margin: 5px;
+  font-size: 16px;
+}
+
+.button-page {
+  background-color: #fff4e6;
+  color: #4b3832;
+  border: 2px solid #4b3832;
+  cursor: default;
+}
+
+.transparent-btn {
+  opacity: 0;
+  cursor: default;
+}
+
+.pagination-button:disabled {
+  background-color: rgb(175, 175, 175);
+  color: rgb(116, 116, 116);
+  border: none;
+}
+
+.pagination-button:disabled:hover {
+  background-color: rgb(175, 175, 175);
+  color: rgb(116, 116, 116);
+  border: none;
+  cursor: default;
+}
+
+.pagination-button:hover {
+  background-color: #fff4e6;
+  color: #4b3832;
+}
+.edit-button {
+  height: 25px;
+  width: auto;
+}
+.edit-task {
+  width: 40px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+}
+.edit-button:hover {
+  filter: drop-shadow(0px 2px 10px rgb(255, 255, 255));
+  color: rgb(40, 39, 39);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.no-padding {
+  padding: 0;
+}
+.no-pointer {
+  cursor: default;
+}
+
+app-donut-chart {
+  z-index: -100;
+  position: absolute;
+  width: 1200px;
+  height: 500px;
+  top:0;
+  left: 0;
+}

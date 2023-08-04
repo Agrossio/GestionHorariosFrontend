@@ -1,0 +1,41 @@
+* {
+      box-sizing: border-box;
+}
+
+nav, .containerButtons {
+    display: flex;
+}
+
+nav {
+    background-color: #4B3832;
+    margin: 3vh;
+    width: 90px;
+    min-height: 94vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-radius: 15px;
+}
+
+.containerButtons {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.imageLogOut {
+    filter:  invert(1);
+    height: 50px;
+    width: 50px;
+}
+
+.logOutButton:hover {
+    filter: drop-shadow(0px 2px 10px rgba(230, 191, 169, 0.705));
+    color: rgb(40, 39, 39);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+

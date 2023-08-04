@@ -1,0 +1,157 @@
+<app-navbar></app-navbar>
+<section class="d-flex" *ngIf="projectSelected">
+  <div class="head-box">
+    <div class="detail-box d-box">
+      <div class="list-title">
+        <h2 class="h2 fw-bold">{{ projectSelected!.name }}</h2>
+        <p>Cliente: {{ projectSelected!.business_name }}</p>
+        <p>Sprints: {{ projectSelected!.sprints!.length }}</p>
+        <div class="title-button">
+          <button class="list-item no-pointer">
+            Tareas totales: {{ this.totalElements }}
+          </button>
+          <button class="list-item no-pointer">
+            Tareas en proceso: {{ taskPending }}
+          </button>
+          <button class="list-item no-pointer">
+            Tareas terminadas: {{ taskDone }}
+          </button>
+          <button class="list-item" (click)="peopleDetail()">
+            Integrantes:
+            {{
+              projectSelected.people != null
+                ? projectSelected.people.length
+                : "Sin Integrantes"
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons-up column">
+      <button
+        class="action-button"
+        (click)="deleteProject(projectSelected!.project_id)"
+      >
+        Eliminar proyecto
+      </button>
+      <button
+        class="action-button"
+        (click)="open(createUpdateTask); setModalTexts('Task', 'Crear')"
+      >
+        Agregar Tarea
+      </button>
+      <button
+        [disabled]="graphAsImage == ''"
+        class="action-button"
+        (click)="createPDF()"
+      >
+        Crear Informe
+      </button>
+      <button
+        class="action-button"
+        (click)="open(createUpdate); setModalTexts('Sprints', 'Crear/Editar')"
+      >
+        Sprint
+      </button>
+    </div>
+  </div>
+  <div class="detail-box box-color">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Tarea</th>
+          <th scope="col">Puntos de historia</th>
+          <th scope="col">Prioridad</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Empleado asignado</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td>{{ task.title }}</td>
+          <td>{{ task.story_points }}</td>
+          <td>{{ task.priority_name }}</td>
+          <td>{{ task.status_name }}</td>
+          <td>{{ task.dev_email != null ? task.dev_email : "No Asignado" }}</td>
+          <td class="no-padding">
+            <button
+              class="edit-task"
+              (click)="
+                open(createUpdateTask);
+                setModalTexts('Task', 'Editar');
+                saveIdTask(task.task_id)
+              "
+            >
+              <img
+                class="edit-button"
+                src="../../assets/images/iconPencil.png"
+              />
+            </button>
+          </td>
+          <td class="no-padding">
+            <button class="edit-task" (click)="deleteTask(task.task_id)">
+              <img
+                class="edit-button"
+                src="../../assets/images/iconTrash.png"
+              />
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="div-button-pagination">
+      <button
+        (click)="previousPage()"
+        class="pagination-button"
+        [ngClass]="{
+          'transparent-btn': currentPage === 0 || totalElements < 7
+        }"
+      >
+        🡸
+      </button>
+      <button
+        class="pagination-button button-page"
+        [ngClass]="{ 'transparent-btn': totalElements < 7 }"
+      >
+        {{ this.currentPage + 1 }}
+      </button>
+      <button
+        (click)="nextPage()"
+        class="pagination-button"
+        [ngClass]="{
+          'transparent-btn': currentPage === totalPages - 1 || totalElements < 7
+        }"
+      >
+        🡺
+      </button>
+    </div>
+  </div>
+</section>
+<ng-template #createUpdate>
+  <app-create-edit-sprint-modal
+    [projectId]="projectId"
+  ></app-create-edit-sprint-modal>
+</ng-template>
+
+<ng-template #createUpdateTask>
+  <app-create-edit-task-modal
+    [project_id]="projectId"
+    [taskId]="taskId"
+    [modalButtonText]="modalButtonText"
+  ></app-create-edit-task-modal>
+</ng-template>
+
+<app-donut-chart
+  *ngIf="this.loadedData"
+  graphTitle="Avance del proyecto"
+  class="hiddenChart"
+  [dataPercentages]="this.dataPercentages"
+  [aspectRatio]="5"
+  [fontSize]="25"
+  (graphToPDF)="getGraphAsImage($event)"
+  [hideChart]="true"
+>
+</app-donut-chart>

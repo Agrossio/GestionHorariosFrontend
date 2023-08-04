@@ -1,0 +1,132 @@
+.modal-header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.modal-title {
+    text-align: center;
+}
+.box-Sprint {
+    height: 90px;
+    align-items: center
+}
+.box-Sprint, .box-dataSprint {
+    display: flex;
+    gap: 30px;
+}
+.box-number {
+    width: 150px;
+}
+.numberInput {
+    width: 100px;
+}
+.box-principalSprint {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+form {
+    background-color: #BE9B7B;
+    width: 100%;
+}
+input {
+    padding-top: 10px;
+    padding-right: 15px;
+    margin: 0;
+}
+label {
+    margin: 0;
+    
+}
+.input-form:focus ~ label, .input-form:not(:placeholder-shown) ~ label {
+    top: 10px;
+}
+.box-inputs, .box-dataSprint, .box-buttonSprint {
+    align-items: center
+}
+.box-inputs, .box-buttonSprint {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+.buttonFormCreate, .button-delete {
+    width: 300px;
+    margin: 0;
+}
+.box-Sprint, .boxCreateSprint {
+    border-radius: 10px;
+    border: 1px solid #4B3832;
+    padding: 15px 15px;
+}
+.titleCreateSprint {
+    text-align: center;
+    font-size: 25px;
+}
+.box-Sprint p, .box-number p {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.box-Sprint h3, .box-number h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.box-number, .box-initialDate, .box-finishDate {
+    width: fit-content;
+}
+.button-sprint {
+    width: 150px;
+}
+.modal-body {
+    padding: 30px;
+}
+.box-buttonSolicitud {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+.button-modal {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    padding: 0;
+}
+.button-modal:hover {
+    border: none;
+}
+.button-solicitud {
+    width: 30px;
+    border-radius: 50%;
+}
+.button-solicitud:hover {
+    background-color: #4B3832;
+    color: #BE9B7B;
+    transition: all 0.5s;
+}
+.div-input-style {
+    height: min-content;
+}
+.boxCreateForm {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+.box-buttonsCreateDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px
+}
+.align-span{
+    top: 59px;
+}

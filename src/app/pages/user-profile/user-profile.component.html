@@ -1,0 +1,115 @@
+<app-navbar></app-navbar>
+<app-loader *ngIf="showLoader" class="reloj-loader" ></app-loader>
+<div class="profile-container" *ngIf="!showLoader">
+  <div class="general-container">
+    <div class="top-box">
+      <div class="info-user">
+        <div class="info-general">
+          <img [src]="'https://ui-avatars.com/api/?name=' + dataUser.name + '+' + dataUser.lastname"
+               class="image" alt="imagen de usuario" [ngClass]="{'img-admin': !showProyectsList, 'img-dev': showProyectsList}">
+          <div class="info-container">
+            <h2
+              [ngClass]="{'name-user-admin': !showProyectsList, 'name-user-dev': showProyectsList}">{{dataUser.name}}</h2>
+            <h3 class="user-email">{{dataUser.email}}</h3>
+            <h4>CUIT/CUIL: {{dataUser.cuil}}</h4>
+            <h4>Rol: Administrador</h4>
+          </div>
+        </div>
+        <div class="moreInfo-container"
+             [ngStyle]="showProyectsList==true ? {'display':  'block'} : {'display': 'none'}">
+          <h3 class="title-moreInfo">Más información</h3>
+          <p class="item-moreInfo">Horas trabajadas durante el mes: 20</p>
+          <p class="item-moreInfo">Fecha de inicio laboral: {{dataUser.start_job_relation | date}} </p>
+          <p class="item-moreInfo">Tel: {{dataUser.tel}}</p>
+        </div>
+        <div class="div-button-new">
+          <button type="submit" class="button-editData button-new" (click)="open(content2)">Editar datos</button>
+          <button type="submit" class="button-editData button-new" (click)="open(content)">Editar contraseña</button>
+        </div>
+      </div>
+
+    </div>
+    <ng-template #content2 let-modal>
+        <div class="edit-data-container padding-datos">
+          <h2>Editar Datos</h2>
+          <form class="form-editData" [formGroup]="userForm" (ngSubmit)="editData()">
+            <div class="div-input-style">
+              <input type="email" placeholder="Email" class="input-form-user ps-3" formControlName="email" id="email">
+              <label for="email">Email</label>
+              <span class="error-input position-error" *ngIf="userForm.get('email')?.errors?.['required'] && userForm.get('email')?.touched && !userForm.get('email')?.errors?.['maxlength'] && !userForm.get('email')?.errors?.['email']">*Campo obligatorio</span>
+              <span class="error-input position-error" *ngIf="userForm.get('email')?.errors?.['maxlength'] && userForm.get('email')?.touched && !userForm.get('email')?.errors?.['email']">*No exceder los 45 caracteres</span>
+              <span class="error-input position-error" *ngIf="userForm.get('email')?.errors?.['email'] && userForm.get('email')?.touched">*El correo electrónico no es válido.</span>
+            </div>
+            <div class="box-doubleInput">
+              <div class="div-input-style">
+                <input type="text" class="input-formDouble ps-3" placeholder="Nombre" formControlName="nombre" id="nombre">
+                <label for="nombre">Nombre</label>
+                <span class="error-input position-error" *ngIf="userForm.get('nombre')?.errors?.['required'] && userForm.get('nombre')?.touched">*Campo obligatorio</span>
+                <span class="error-input position-error" *ngIf="userForm.get('nombre')?.errors?.['maxlength']">*No exceder los 45 caracteres</span>
+              </div>
+              <div class="div-input-style">
+                <input class="input-formDouble ps-3" type="text" placeholder="Apellido" formControlName="apellido" id="apellido">
+                <label for="apellido">Apellido</label>
+                <span class="error-input position-error" *ngIf="userForm.get('apellido')?.errors?.['required'] && userForm.get('apellido')?.touched">*Campo obligatorio</span>
+                <span class="error-input position-error" *ngIf="userForm.get('apellido')?.errors?.['maxlength']">*No exceder los 45 caracteres</span>
+              </div>
+              </div>
+            <div class="div-input-style">
+              <input class="input-form-user ps-3" type="text" placeholder="CUIL/CUIT" formControlName="cuilCuit" id="cuilCuit">
+              <label for="cuilCuit">CUIL/CUIT</label>
+              <span class="error-input position-error" *ngIf="userForm.get('cuilCuit')?.errors?.['required'] && userForm.get('cuilCuit')?.touched">*Campo obligatorio</span>
+              <span class="error-input position-error" *ngIf="userForm.get('cuilCuit')?.errors?.['maxlength']">*No exceder los 15 caracteres</span>
+            </div>
+            <div class="div-input-style">
+              <input class="input-form-user ps-3" type="tel" id="telefono" placeholder="Telefono" formControlName="telefono" maxlength="10">
+              <label for="telefono">Teléfono</label>
+              <span class="error-input position-error" *ngIf="userForm.get('telefono')?.errors?.['required'] && userForm.get('telefono')?.touched">*Campo obligatorio</span>
+              <span class="error-input position-error" *ngIf="userForm.get('telefono')?.errors?.['maxlength']">*No exceder los 10 caracteres</span>
+            </div>
+            <button type="submit" class="button-editData">Confirmar</button>
+          </form>
+        </div>
+    </ng-template>
+  </div>
+</div>
+
+  <ng-template #content let-modal>
+    <div id="modal-content">
+      <div class="edit-password-container">
+        <h2>Editar Contraseña</h2>
+        <form class="form-editData" [formGroup]="passForm" (ngSubmit)="editPass()">
+          <div class="div-password div-input-style">
+            <input type="{{passwordVisible?'text':'password'}}" placeholder="Antigua contraseña"
+                   formControlName="oldPassword" class="input-form ps-3 passwordEye" maxlength="20" id="oldPassword">
+            <button type="button" (click)="passwordVisible = !passwordVisible" class="button-passv"></button>
+            <label for="oldPassword">Antigua contraseña</label>
+            <span class="error-input position-error2"
+                  *ngIf="passForm.get('oldPassword')?.errors?.['required'] && passForm.get('oldPassword')?.touched">*Campo obligatorio</span>
+          </div>
+          <div class="div-password div-input-style">
+            <input type="{{passwordVisible2?'text':'password'}}" placeholder="Nueva contraseña"
+                   formControlName="newPassword" class="input-form ps-3 passwordEye" maxlength="20" id="newPassword">
+            <button type="button" (click)="passwordVisible2 = !passwordVisible2" class="button-passv"></button>
+            <label for="newPassword">Nueva contraseña</label>
+            <span class="error-input position-error2"
+                  *ngIf="passForm.get('newPassword')?.errors?.['required'] && passForm.get('newPassword')?.touched">*Campo obligatorio</span>
+            <span class="error-input position-error2" *ngIf="passForm.get('newPassword')?.errors?.['pattern']">*Debe tener entre 8 y 20 carácteres, al menos una mayúscula, una minúscula y un número.</span>
+          </div>
+          <div class="div-password div-input-style">
+            <input type="{{passwordVisible3?'text':'password'}}" placeholder="Confirmar contraseña"
+                   formControlName="confirmPassword" class="input-form ps-3 passwordEye" maxlength="20"
+                   id="confirmPassword">
+            <button type="button" (click)="passwordVisible3 = !passwordVisible3" class="button-passv"></button>
+            <label for="confirmPassword">Confirmar contraseña</label>
+            <span class="error-input position-error2"
+                  *ngIf="passForm.get('confirmPassword')?.errors?.['required'] && passForm.get('confirmPassword')?.touched">*Campo obligatorio</span>
+            <span class="error-input position-error2"
+                  *ngIf="passForm.get('confirmPassword')?.errors?.['matchOther'] && passForm.get('confirmPassword')?.dirty">*Las contraseñas no coinciden</span>
+          </div>
+          <button type="submit" class="button-editPass">Confirmar</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+
+

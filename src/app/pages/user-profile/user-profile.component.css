@@ -1,0 +1,303 @@
+.profile-container, .general-container, .top-box, .bottom-box, .info-user, .info-general, .edit-data-container, .edit-password-container, .form-editData, .box-doubleInput, .div-password {
+    display: flex;
+}
+
+.profile-container, .general-container, .info-user, .edit-data-container, .edit-password-container, .form-editData {
+    flex-direction: column;
+}
+
+.top-box, .bottom-box, .info-general {
+    flex-direction: row;
+}
+
+.general-container, .bottom-box, .info-general, .form-editData  {
+    gap: 20px;
+}
+
+.general-container {
+    margin: 22px 22px 0 130px;
+}
+
+.top-box {
+    height: 94vh;
+}
+
+.bottom-box {
+    height: 46vh;
+    justify-content: space-between;
+}
+
+.info-user {
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    border: 1px solid #4B3832;
+    width: 100%;
+    padding: 20px;
+}
+
+.info-general {
+    margin: 100px 100px 10px -40px;
+    /*align-items: center;*/
+    width: 400px;
+}
+
+.img-admin {
+    width: 250px;
+}
+
+.img-dev {
+    width: 150px;
+    height: 150px;
+}
+
+.image {
+  border-radius: 100%;
+  width: 100%;
+}
+
+.name-user-admin {
+    color: #854442;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+}
+
+.name-user-dev {
+    color: #854442;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.info-user h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.user-email {
+    font-size: 25px;
+    margin: 0;
+}
+
+.change-photo-admin {
+    margin: 20px 0 0 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #854442;
+    width: fit-content;
+}
+
+.change-photo-dev {
+    margin: 10px 0 0 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: #854442;
+    width: fit-content;
+}
+
+.change-photo-admin:hover, .change-photo-dev:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.moreInfo-container {
+    margin-left: 78px;
+    align-items: center;
+}
+
+.title-moreInfo, .item-moreInfo {
+    margin: 0;
+}
+
+.title-moreInfo {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.item-moreInfo {
+    font-size: 15px;
+}
+
+.edit-data-container, .edit-password-container {
+    background-color: #BE9B7B;
+    width: 100%;
+    height: 400px;
+    border-radius: 5px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.padding-datos {
+  padding-right: 70px;
+}
+
+.edit-data-container, .edit-password-container {
+    justify-content: space-around;
+}
+
+.edit-data-container h2, .edit-password-container h2 {
+    text-align: center;
+    font-size: 25px;
+}
+
+.box-doubleInput {
+    gap: 18px;
+    width: 425px;
+}
+
+.input-form, .input-formDouble, .input-form-user {
+    height: 45px;
+    border: 1px solid black;
+}
+
+.input-form, .button-editData, .input-form-user {
+    width: 100%;
+}
+
+.input-form {
+    background-color: #fff4e6;
+}
+
+.input-formDouble {
+    width: 88%;
+    margin-left: 25px;
+}
+
+.input-form-user{
+  margin-left: 25px;
+}
+
+.passwordEye {
+    background: url(https://cdn-icons-png.flaticon.com/512/6405/6405909.png)
+      no-repeat right;
+    background-size: 50px;
+    background-color: #fff4e6;
+}
+
+.button-passv {
+    position: absolute;
+    width: 50px;
+    background-color: transparent;
+    margin-right: 11px;
+}
+
+.div-password {
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* ------------------- acá empiezan los estilos para que se mueva el label hacia arriba ------------------- */
+/*   ***************     agregar label en el html   **********    */
+.input-form:focus {
+  outline: none;
+  border-color: #333333;
+
+}
+
+.input-form {
+  padding-top: 10px;
+}
+
+.input-form:focus ~ label,
+.input-form:not(:placeholder-shown) ~ label {
+  font-size: .8rem;
+  top: 12px;
+  left: 20px;
+  color: rgba(102, 102, 102, 0.74);
+  font-weight: 400;
+  transition: all .3s;
+}
+
+label {
+  font-size: inherit;
+  font-weight: 600;
+  position: absolute;
+  top: 23px;
+  left: 20px;
+  transition: all .3s;
+  color: #111111;
+}
+
+.input-form-user::placeholder, .input-formDouble::placeholder{
+  color: #333333;
+}
+
+/* ------------------- acá terminan los estilos para que se mueva el label hacia arriba ------------------- */
+
+
+.button-new {
+  margin-top: 120px;
+  width: 300px;
+  height: 60px;
+
+}
+
+.div-button-new{
+  display: flex;
+  justify-content: space-around;
+  width: 800px;
+  height: 500px;
+}
+
+/* ***************** estilos de modal contraseña *************** */
+#modal-content {
+  padding: 30px;
+  background-color:  #BE9B7B;
+  border-radius: 7px;
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+  border: none;
+}
+
+.form-editData {
+  width: 400px;
+  position: relative;
+}
+
+#modal-content h2 {
+  width: 400px;
+}
+
+.button-editPass{
+  width: 375px;
+  margin-left: 12px;
+  margin-top: 10px;
+}
+
+/* ************** modal editar usuario ********* */
+.button-editData{
+  margin-left: 25px;
+}
+
+.input-form-user, .input-formDouble {
+  padding-top: 12px;
+}
+
+.input-form-user ~ label, .input-formDouble ~ label {
+  font-size: .8rem;
+  font-weight: 400;
+  position: absolute;
+  top: 3px;
+  left: 33px;
+  transition: all .3s;
+  color: #5d5d5d;
+}
+
+.input-form-user::placeholder, .input-formDouble::placeholder{
+  color: transparent;
+}
+
+.position-error {
+  top: 45px;
+  left: 26px;
+}
+
+.position-error2{
+  top: 58px;
+  left: 18px;
+  width: 350px;
+}
+
+.div-input-style {
+  padding-left: 0px;
+}

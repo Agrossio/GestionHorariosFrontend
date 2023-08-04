@@ -1,0 +1,32 @@
+.clientsButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    width: 60px;
+}
+
+.imageClients {
+    filter:  invert(1);
+    width: 35px;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.nameButton {
+    font-size: 12px;
+    margin: 0;
+    color: wheat;
+    font-weight: 100;
+}
+
+.clientsButton:hover {
+    filter: drop-shadow(0px 2px 10px rgba(230, 191, 169, 0.705));
+    color: rgb(40, 39, 39);
+    transform: scale(1.1);
+    cursor: pointer;
+}

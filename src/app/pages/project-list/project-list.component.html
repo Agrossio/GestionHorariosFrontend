@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+
+<section class="project-container">
+  <app-list-page-header
+    headerTitle="Listado de proyectos"
+    headerParagraph="Visualizar todos los proyectos"
+    [headerButtonText]="rolAdmin ? 'Crear proyecto': '' "
+    [rolAdmin]="rolAdmin"
+    modalTitle="Crear proyecto"
+    modalButtonText="Crear"
+    [projects]="projects"
+  ></app-list-page-header>
+
+  <app-loader *ngIf="showLoader" class="reloj-loader"></app-loader>
+
+  <div class="list-general" *ngIf="!showLoader">
+    <div class="card list-project">
+      <input
+        type="text"
+        class="lupita input-search ps-3"
+        placeholder="Buscar proyecto..."
+        name="filterProject"
+        [(ngModel)]="filterProject"
+      />
+      
+      <div class="list-button" *ngIf="rolDeveloper">
+        <button
+          *ngFor="
+            let project of developer.data.projects | filter : [filterProject, 'name'];
+            let i = index
+          "
+          [ngClass]="{ selected: selectedProjectIndex === i }"
+          (click)="
+            projectSelected = project;
+            selectedProjectIndex = i;
+            view = 'Detalles'; selectionarProject()
+          "
+          class="list-item no-overflow-button"
+        >
+          {{ project.name }}
+        </button>
+      </div>
+
+      <div class="list-button" *ngIf="rolAdmin || rolManagement">
+        <button
+          *ngFor="
+            let project of projects | filter : [filterProject, 'name'];
+            let i = index
+          "
+          [ngClass]="{ selected: selectedProjectIndex === i }"
+          (click)="
+            projectSelected = project;
+            selectedProjectIndex = i;
+            view = 'Detalles'
+          "
+          class="list-item no-overflow-button"
+        >
+          {{ project.name }}
+        </button>
+      </div>
+    </div>
+
+    <div class="project-card" >
+      <div class="card project-card-detail">
+        <div *ngIf="!projectSelected" class="no-content-generic">
+          <img src="assets/images/mano.png" alt="Todo Ok" class="check-icon" />
+          <h2>Seleccione un proyecto del listado</h2>
+        </div>
+        <div *ngIf="projectSelected">
+          <app-project-detail-in-list
+            [projectSelected]="projectSelected"
+            [rolAdmin]="rolAdmin"
+            [rolManagement]="rolManagement"
+            [rolDeveloper]="rolDeveloper"
+          ></app-project-detail-in-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

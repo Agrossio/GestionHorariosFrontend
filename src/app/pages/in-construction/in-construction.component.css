@@ -1,0 +1,21 @@
+h1{
+  text-align: center;
+  margin: 50px 20px 20px 20px;
+  color:  rgba(75, 56, 50, 0.85);
+}
+.icon {
+  width: 500px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.icon img{
+  width:500px;
+  height: auto;
+}
+
+.button-back{
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+}

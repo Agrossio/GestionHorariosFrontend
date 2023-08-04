@@ -1,0 +1,63 @@
+<div class="project-title w-100">
+  <div class="project-title-button">
+    <h2 class="text-light h2 fw-bold">{{ projectSelected.name }}</h2>
+    <button class="button-solicitud" *ngIf="projectSelected && rolAdmin">
+      <a routerLink="/project-view/{{ projectSelected.project_id }}"
+      ><img
+        src="../../../assets/images/iconDetail.png"
+        class="button-solicitud"
+    /></a>
+    </button>
+  </div>
+  <p>Cliente: {{ projectSelected.business_name }}</p>
+  <p>Stack: {{ projectSelected.stack }}</p>
+  <app-list-taks-by-project *ngIf="projectSelected && rolDeveloper" [project_id]=projectSelected.project_id></app-list-taks-by-project>
+  <div class="div-icons" *ngIf="projectSelected && rolAdmin">
+    <div class="div-staff">
+      <img src="assets/images/iconStaff.png" alt="Icono Staff" />
+      <h4>Grupo</h4>
+      <p>{{projectSelected.people?.length}} integrantes</p>
+    </div>
+    <div class="div-task">
+      <img src="assets/images/iconTask.png" alt="Icono Tareas" />
+      <h4>Tareas</h4>
+      <p>{{projectSelectedTasks.length}} tickets totales</p>
+    </div>
+  </div>
+
+  <app-donut-chart
+    *ngIf="loadedData && projectSelected && (rolAdmin || rolManagement)"
+    graphTitle="Avance del proyecto"
+    [dataPercentages]="this.dataPercentages"
+    [aspectRatio]="5"
+    [fontSize]="20"
+    (graphToPDF)="getGraphAsImage($event)"
+  >
+  </app-donut-chart>
+
+  <div class="div-buttons mt-4">
+    <button
+      class="project-button"
+      *ngIf="projectSelected && rolAdmin"
+      (click)="openModal()"
+    >
+      Editar proyecto
+    </button>
+    <button
+      [disabled]="graphAsImage == ''"
+      class="project-button"
+      *ngIf="projectSelected && (rolAdmin || rolManagement)"
+      (click)="createPDF()"
+    >
+      Crear informe
+    </button>
+
+    <button
+      class="project-button"
+      *ngIf="projectSelected && rolAdmin"
+      (click)="deleteProject(projectSelected.project_id)"
+    >
+      Eliminar
+    </button>
+  </div>
+</div>

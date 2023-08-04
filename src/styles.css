@@ -1,0 +1,200 @@
+html, body { height: 100%; }
+body { margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FFF4E6;}
+button{
+    color: #FFF4E6;
+    background-color: #4B3832;
+    border: none;
+    border-radius: 10px;
+    height: 45px;
+    width: 200px;
+    font-weight: 600;
+    font-size: 21px;
+}
+
+button:hover {
+    background-color: #FFF4E6;
+    color: #4B3832;
+    border: 2px solid #4B3832;
+}
+
+button:disabled {
+  background-color: rgba(122, 122, 122, 0.8);
+  color: rgb(148, 148, 148);
+  border: 2px solid #4B3832;
+}
+
+.card{
+    background-color: #BE9B7B;
+}
+
+input, textarea, select{
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    background-color: #FFF4E6;
+}
+
+.swal2-modal {
+    background-color:  #BE9B7B !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 8px !important;
+    color: black !important;
+    font-family: 'Poppins', sans-serif !important;
+    border: none !important;
+}
+
+.swal2-confirm, .swal2-cancel {
+    background-color: #4B3832 !important;
+}
+
+/* ------- inputs -------- */
+
+/* Tiene que borrar estas clases de sus hojas de estilos locales de cada componente y sólo agregar clases específicas */
+
+.input-form {
+    background-color: white;
+    border: 1px solid black;
+    width: 450px; /* esto se debería modificar en casos particulares que el tamaño difiera */
+    height: 60px; /* esto se debería modificar en casos particulares que el tamaño difiera */
+    margin: 12px; /* esto se debería modificar en casos particulares que el tamaño difiera */
+}
+
+.input-form:focus {
+    border: 3px solid rgb(100, 100, 100);
+    outline-offset: 1px;
+}
+
+.input-form:focus ~ label,
+.input-form:not(:placeholder-shown) ~ label {
+    font-size: .8rem;
+    top: 16px;
+    left: 24px;
+    color: #666666;
+    transition: all .3s;
+}
+
+label {                 /* Agreguen el label debajo de cada input: <label for=" (id del input) "> (Texto) </label> */
+    font-size: inherit;
+    font-weight: 600;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    transition: all .3s;
+}
+
+input::placeholder {
+    color: transparent;
+}
+
+/* ------------------- estilos para los errores --------------- */
+
+.error-input {              /* Esta clase se tiene que agregar en la etiqueta del error */
+    position: absolute;
+    color: #6e0000;
+    top: 72px;              /* Revisar este parámetro que no se vaya a cualquier lado */
+    left: 15px;
+    font-size: 11px;
+    width: 540px;
+  }
+
+  .div-input-style {              /* Esta clase se tiene que agregar en la etiqueta padre del error */
+    position: relative;
+  }
+
+/* ------------------- estilos para botón seleccionado --------------- */
+
+.selected {
+  background-color: #4B3832;
+  color: whitesmoke;
+}
+
+/* -------No content mensaje------- */
+.check-icon {
+  width: 16%;
+}
+.no-content-generic {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  height: 100%;
+  width: 100%;
+  border: black 1px solid;
+  border-radius: 5px;
+}
+
+/* Lista generica */
+.lupita {
+  background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png) no-repeat;
+  background-position: 98%;
+  background-color: #FFF4E6;
+  background-size: 32px;
+}
+
+
+/* ------- MODAL -------  */
+.modal {
+  --bs-modal-width: 800px;
+  border-radius: 10px;
+}
+.modal-header, .modal-body, .modal-footer {
+  background-color: #BE9B7B;
+  border: none;
+  padding-bottom: 0;
+}
+.btn-close {
+  height: 0.5em;
+  width: 0.5em;
+  border: none;
+  font-size: 1em;
+  margin: 0;
+}
+.modal-title {
+  margin: 0 auto;
+  padding-top: 20px;
+  font-weight: 600;
+  font-size: 2em;
+}
+.item-request {
+  margin: 0 auto;
+}
+.item-request p {
+  font-size: 18px;
+}
+.form-modalRequest {
+  margin-top: 1em;
+}
+.form-modalRequest p {
+  padding-left: 50px;
+}
+.checklist-modalRequest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-group {
+  width: 50%;
+  margin: 0 auto;
+}
+.btn:hover {
+  background-color: #4B3832;
+  color: #BE9B7B;
+}
+.btn {
+  margin: 0 auto;
+  width: 50%;
+  margin-bottom: 20px;
+}
+ /* ******* estilos para el loader ****** */
+.reloj-loader{
+  margin: 0 auto;
+  position: relative;
+  top:35vh;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+}
