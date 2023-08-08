@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from "../../environment.prod";
+import { environment } from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { SprintResponse } from '../models/Response/SprintResponse';
 import {Observable} from "rxjs";
@@ -24,7 +24,7 @@ export class SprintsService {
     }
   };
 
-  getAllSprintByProjectId(project_id: number): Observable<any> { 
+  getAllSprintByProjectId(project_id: number): Observable<any> {
     try {
       return this.http.get<SprintResponse>(`${this.SERVER_URL}/sprint/${project_id}?isDisabled=false`, this.httpOptionsWithToken())
        }
@@ -51,7 +51,7 @@ export class SprintsService {
     }
   }
 
-  addSprint(sprint: SprintRequest): Observable<SprintResponse> { 
+  addSprint(sprint: SprintRequest): Observable<SprintResponse> {
     try{
       return this.http.post<any>(`${this.SERVER_URL}/sprint`, sprint, this.httpOptionsWithToken())
     }

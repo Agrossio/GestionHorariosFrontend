@@ -3,7 +3,7 @@ import {map, Observable} from "rxjs";
 import {MonthRequest, YearMonth, YearMonthDays} from "../models/Request/MonthRequest";
 import {MonthResponse} from "../models/Response/MonthResponse";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environment} from "../../environment.prod";
+import {environment} from "../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })

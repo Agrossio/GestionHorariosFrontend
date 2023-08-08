@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { PersonLoginRequest } from '../models/Request/PersonLoginRequest';
 import { PersonLoginResponse } from '../models/Response/PersonLoginResponse';
 import { PersonResponse } from '../models/Response/PersonResponse';
-import { environment } from 'src/environment.prod';
+import { environment } from '../../environments/environment';
 import {PasswordResponse} from "../models/Response/PasswordResponse";
 import { RegisterRequest } from '../models/Request/RegisterRequest';
 @Injectable({

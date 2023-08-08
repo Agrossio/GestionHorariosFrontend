@@ -3,7 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { TaskData, TaskResponse } from '../models/Response/TaskResponse';
 import { Observable } from 'rxjs';
 import { TaskRequest } from '../models/Request/TaskRequest';
-import { environment } from 'src/environment.prod';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class TasksService {
     } catch(error){
       console.log(error);
       throw error;
-    } 
+    }
   }
 
    updateTask(task_id: number, taskData: any): Observable<any>{
@@ -56,7 +56,7 @@ export class TasksService {
     }
   }
 
-  getAllTaskByProjectId(project_id: number) { 
+  getAllTaskByProjectId(project_id: number) {
     try {
       return this.http.get<TaskResponse>(`${this.SERVERURL}/task/${project_id}?isDisabled=false`, this.httpOptionsWithToken())
        }
@@ -64,7 +64,7 @@ export class TasksService {
       throw error;
     }
   };
-  
+
   getAllTaskByDeveloper(
     email: string, project_id: number): Observable<any> {
     try {
@@ -81,7 +81,7 @@ export class TasksService {
       throw error;
     }
   }
-  
+
 
   getAllTasks(projectId: number){
     try {
@@ -101,10 +101,10 @@ export class TasksService {
       throw error;
     }
   }
-  
+
   assignTask(email: string, task_id: number): Observable<any> {
     try {
-      const url = `${this.SERVERURL}/task/add-dev/${email}/${task_id}`; 
+      const url = `${this.SERVERURL}/task/add-dev/${email}/${task_id}`;
       return this.http.patch<any>(url, null, this.httpOptionsWithToken());
     } catch (error) {
       console.log(error);
@@ -114,7 +114,7 @@ export class TasksService {
 
   editStatusTask(status: string, task_id: number): Observable<any> {
     try {
-      const url = `${this.SERVERURL}/task/change-status/${status}/${task_id}`; 
+      const url = `${this.SERVERURL}/task/change-status/${status}/${task_id}`;
       return this.http.patch<any>(url, null, this.httpOptionsWithToken());
     } catch (error) {
       console.log(error);

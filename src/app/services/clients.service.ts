@@ -3,7 +3,7 @@ import {ClientData, ClientResponse} from "../models/Response/ClientResponse";
 import {map, Observable, of} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ClientRequest} from "../models/Request/ClientRequest";
-import {environment} from "../../environment.prod";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
