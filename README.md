@@ -12,10 +12,11 @@ Management System to track developers worked hours.
 
 - Test Password (for all users): Masterpass123
 
-## Features 📋
+## Features 📚
 
 ### 3 user roles
 - Admin: 👮
+  - See connected users
   - Approve new users
   - Set user roles
   - Create Projects
@@ -34,9 +35,18 @@ Management System to track developers worked hours.
 - Developer: 👨‍🔧
   - View assigned projects
   - Get a task
+  - Add worked hours to a task
   - Change task status
 
 ### Spring Security
+
+## TODOs 📋
+
+- Fix bug: Some data only updates upon a browser refresh (F5)  
+- Developer task/project assigment has to be done in 2 steps, giving a non-intuitive & bad user experience
+- Add chat between users
+- Add new user approval notification to the admin UI
+
 
 ## Developers Team 💻 
 
